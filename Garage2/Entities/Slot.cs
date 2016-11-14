@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,16 @@ namespace Garage2.Entities
 {
     public class Slot
     {
+        [Required]
         public int Id { get; set; }
+
+        [MinLength(1), MaxLength(10), DisplayName("ID-nummer")]
         public string PID { get; set; }
+
+        [DisplayName("Plats")]
         public string Location { get; set; }
 
+        [Required, DisplayName("Garage")]
         public virtual Garage Garage { get; set; }
     }
 }
