@@ -17,6 +17,14 @@ namespace Garage2.Controllers
         private GarageDb db = new GarageDb();
         private GarageRepository repo = new GarageRepository();
 
+        // GET: Seed
+        public ActionResult Seed()
+        {
+            new MainRepository().Seed();
+            //return Content("Seed Klar förhoppningsvis");
+            return Redirect("Index");
+        }
+
         // GET: Garages
         public ActionResult Index()
         {
