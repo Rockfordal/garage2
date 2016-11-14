@@ -62,8 +62,8 @@ namespace Garage2.Controllers
             if (ModelState.IsValid)
             {
                 repo.GenerateSlots(garage);
-                //db.Garages.Add(garage);
-                //db.SaveChanges();
+                db.Garages.Add(garage);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 

@@ -1,5 +1,6 @@
 ﻿@model Garage2.Entities.Garage
 
+
 @{
     ViewBag.Title = "Details";
 }
@@ -27,6 +28,10 @@
         </dd>
 
     </dl>
+    @foreach(var s in Model.Slots)
+    {
+        @Html.DisplayNameFor(model => s.PID)
+    }
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
