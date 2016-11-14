@@ -15,6 +15,6 @@ namespace Garage2.Entities
 
         public int NumberOfSlots { get; set; }
 
-        //public virtual ICollection<Slot> Slots { get; set; }
+        public virtual ICollection<Slot> Slots { get; set; }
     }
 }

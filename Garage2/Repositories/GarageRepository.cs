@@ -22,7 +22,7 @@ namespace Garage2.Repositories
             int lvl = 0;
             int n = 1;
             string pid = "";
-
+            List<Slot> tmp = new List<Slot>();
             for (int i = 0; i < antal; i++)
             {
                 if (i < (antal / letters.Length))
@@ -36,6 +36,10 @@ namespace Garage2.Repositories
 
                 if(n<10)
                     pid += "0" + n;
+                if (n > 10)
+                    n = 1;
+                else
+                    n += 1;
                     
 
                 var slot = new Slot();
@@ -43,9 +47,10 @@ namespace Garage2.Repositories
                 slot.Garage = garage;
                 slot.Id = i;
                 slot.Location = "Skellefteå";
-                //garage.Slots.Add(slot);
                 db.Slots.Add(slot);
+                tmp.Add(slot);
             }
+            garage.Slots = tmp;
             return true;
         }
     }

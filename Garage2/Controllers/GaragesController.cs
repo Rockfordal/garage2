@@ -60,9 +60,9 @@ namespace Garage2.Controllers
         {
             if (ModelState.IsValid)
             {
-                repo.GenerateSlots(garage);
-                //db.Garages.Add(garage);
-                //db.SaveChanges();
+                //repo.GenerateSlots(garage);
+                db.Garages.Add(garage);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -122,7 +122,14 @@ namespace Garage2.Controllers
         {
             Garage garage = db.Garages.Find(id);
             db.Garages.Remove(garage);
+
             db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult CreateSlots(int id)
+        {
+            repo.GenerateSlots(db.Garages.Find(id));
             return RedirectToAction("Index");
         }
 
