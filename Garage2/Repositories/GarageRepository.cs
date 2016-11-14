@@ -34,9 +34,9 @@ namespace Garage2.Repositories
 
                 pid = letters[lvl].ToString();
 
-                if(n<10)
+                if (n < (antal / letters.Length))
                     pid += "0" + n;
-                if (n > 10)
+                if (n > (antal / letters.Length))
                     n = 1;
                 else
                     n += 1;
