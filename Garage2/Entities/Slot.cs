@@ -20,5 +20,8 @@ namespace Garage2.Entities
 
         [Required, DisplayName("Garage")]
         public virtual Garage Garage { get; set; }
+
+        [DisplayName("Fordon")]
+        public Vehicle Vehicle { get; set; }
     }
 }
