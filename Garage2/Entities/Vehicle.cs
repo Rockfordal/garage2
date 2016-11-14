@@ -22,9 +22,8 @@ namespace Garage2.Entities
         public int Year { get; set; }
         public int NumberOfWheels { get; set; }
 
-        [Required]
         public VehicleType VehicleType { get; set; }
-
         public Slot Slot { get; set; }
+        public Owner Owner { get; set; }
     }
 }

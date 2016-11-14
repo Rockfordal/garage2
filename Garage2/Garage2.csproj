@@ -151,10 +151,6 @@
     <Compile Include="Migrations\201611141022087_Slot belongs to garage.Designer.cs">
       <DependentUpon>201611141022087_Slot belongs to garage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611141024248_Owns Vehicle.cs" />
-    <Compile Include="Migrations\201611141024248_Owns Vehicle.Designer.cs">
-      <DependentUpon>201611141024248_Owns Vehicle.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201611141040389_Vehicle Manufactuer.cs" />
     <Compile Include="Migrations\201611141040389_Vehicle Manufactuer.Designer.cs">
       <DependentUpon>201611141040389_Vehicle Manufactuer.cs</DependentUpon>
@@ -166,6 +162,14 @@
     <Compile Include="Migrations\201611141201422_Required på några fält.cs" />
     <Compile Include="Migrations\201611141201422_Required på några fält.Designer.cs">
       <DependentUpon>201611141201422_Required på några fält.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611141235531_a vehicle has one owner.cs" />
+    <Compile Include="Migrations\201611141235531_a vehicle has one owner.Designer.cs">
+      <DependentUpon>201611141235531_a vehicle has one owner.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611141249271_vehicletype.cs" />
+    <Compile Include="Migrations\201611141249271_vehicletype.Designer.cs">
+      <DependentUpon>201611141249271_vehicletype.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -216,11 +220,6 @@
     <Content Include="Views\Garages\Details.cshtml" />
     <Content Include="Views\Garages\Edit.cshtml" />
     <Content Include="Views\Garages\Index.cshtml" />
-    <Content Include="Views\Owners\Create.cshtml" />
-    <Content Include="Views\Owners\Delete.cshtml" />
-    <Content Include="Views\Owners\Details.cshtml" />
-    <Content Include="Views\Owners\Edit.cshtml" />
-    <Content Include="Views\Owners\Index.cshtml" />
     <Content Include="Views\Vehicles\Create.cshtml" />
     <Content Include="Views\Vehicles\Delete.cshtml" />
     <Content Include="Views\Vehicles\Details.cshtml" />
@@ -231,6 +230,11 @@
     <Content Include="Views\Slots\Details.cshtml" />
     <Content Include="Views\Slots\Edit.cshtml" />
     <Content Include="Views\Slots\Index.cshtml" />
+    <Content Include="Views\Owners\Create.cshtml" />
+    <Content Include="Views\Owners\Delete.cshtml" />
+    <Content Include="Views\Owners\Details.cshtml" />
+    <Content Include="Views\Owners\Edit.cshtml" />
+    <Content Include="Views\Owners\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -258,9 +262,6 @@
     <EmbeddedResource Include="Migrations\201611141022087_Slot belongs to garage.resx">
       <DependentUpon>201611141022087_Slot belongs to garage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611141024248_Owns Vehicle.resx">
-      <DependentUpon>201611141024248_Owns Vehicle.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611141040389_Vehicle Manufactuer.resx">
       <DependentUpon>201611141040389_Vehicle Manufactuer.cs</DependentUpon>
     </EmbeddedResource>
@@ -269,6 +270,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611141201422_Required på några fält.resx">
       <DependentUpon>201611141201422_Required på några fält.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611141235531_a vehicle has one owner.resx">
+      <DependentUpon>201611141235531_a vehicle has one owner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611141249271_vehicletype.resx">
+      <DependentUpon>201611141249271_vehicletype.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

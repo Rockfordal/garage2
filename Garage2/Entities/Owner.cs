@@ -15,7 +15,5 @@ namespace Garage2.Entities
 
         [Required]
         public string LastName { get; set; }
-
-        public virtual Vehicle Vehicle { get; set; }
     }
 }
