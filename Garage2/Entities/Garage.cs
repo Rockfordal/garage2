@@ -14,5 +14,7 @@ namespace Garage2.Entities
         public string Name { get; set; }
 
         public int NumberOfSlots { get; set; }
+
+        //public virtual ICollection<Slot> Slots { get; set; }
     }
 }
