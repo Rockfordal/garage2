@@ -18,7 +18,7 @@ namespace Garage2.Controllers
         // GET: Vehicles
         public ActionResult Index()
         {
-            return View(db.Vehicles.ToList());
+            return View(db.Vehicles.Include("Owner").ToList());
         }
 
         // GET: Vehicles/Details/5

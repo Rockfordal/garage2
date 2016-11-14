@@ -21,7 +21,6 @@ namespace Garage2.Controllers
         public ActionResult Seed()
         {
             new MainRepository().Seed();
-            //return Content("Seed Klar förhoppningsvis");
             return Redirect("Index");
         }
 

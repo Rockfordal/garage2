@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -15,5 +16,14 @@ namespace Garage2.Entities
 
         [Required]
         public string LastName { get; set; }
+
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public string FullName
+        {
+            get
+            { 
+                return FirstName + " " + LastName;
+            }
+        }
     }
 }
