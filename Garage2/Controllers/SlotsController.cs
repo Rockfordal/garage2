@@ -15,6 +15,13 @@ namespace Garage2.Controllers
     {
         private GarageDb db = new GarageDb();
 
+        public ActionResult Test()
+        {
+            int x = 1;
+            var s = x.ToString("0000");
+            return Content(s);
+        }
+
         // GET: Slots
         public ActionResult Index()
         {
