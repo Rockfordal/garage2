@@ -15,50 +15,41 @@ namespace Garage2.Repositories
         {
         }
 
-        
-        
+
+
         public void GenerateSlots(Garage garage, GarageDb db)
         {
-            char[] letters = { 'A', 'B', 'C' };
+            char[] letters = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H' };
             var antal = garage.NumberOfSlots;
-            int lvl = 0;
-            int n = 1;
-            string pid = "";
+            int n = 0;
+            string t = "";
+
+            int index = 0;
 
             List<Slot> tmp = new List<Slot>();
-            List<Slot> slots = db.Slots.ToList();
-            foreach (Slot s in slots)
-            {
-                if (s.Garage.Id == garage.Id)
-                {
-                    db.Entry(slots).State = EntityState.Detached;
-                        //Remove(s);
-                }
-            }
+
             for (int i = 0; i < antal; i++)
             {
-                if (i <= (antal / letters.Length))
-                    lvl = 0;
-                else if (i > (antal / letters.Length) && i <= (antal / letters.Length) * 2)
-                    lvl = 1;
+                n += 1;
+                if (n > 15)
+                {
+                    index += 1;
+                    n = 1;  
+                }
+
+                if(n < 10)
+                {
+                    t = "0" + n.ToString();
+                }
                 else
-                    lvl = 2;
-
-                pid = letters[lvl].ToString();
-
-                if (n <= (antal / letters.Length))
-                    pid += "0" + n;
-                if (n > (antal / letters.Length))
-                    n = 1;
-                else
-                    n += 1;
-
-
+                {
+                    t = n.ToString("0");
+                }
                 var slot = new Slot();
-                slot.PID = pid;
+                slot.PID = letters[index].ToString() + t;
                 slot.Garage = garage;
                 slot.Location = "Skellefteå";
-                db.Slots.Add(slot);
+                //db.Slots.Add(slot);
                 tmp.Add(slot);
             }
             garage.Slots = tmp;
