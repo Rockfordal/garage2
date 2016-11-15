@@ -72,7 +72,7 @@ namespace Garage2.Controllers
         }
 
         // GET: Garages/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id, int? r)
         {
             if (id == null)
             {
@@ -82,6 +82,11 @@ namespace Garage2.Controllers
             if (garage == null)
             {
                 return HttpNotFound();
+            }
+            if(r == 1)
+            {
+                repo.GenerateSlots(garage);
+                db.SaveChanges();
             }
             return View(garage);
         }

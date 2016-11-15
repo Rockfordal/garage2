@@ -22,8 +22,15 @@ namespace Garage2.Repositories
             int lvl = 0;
             int n = 1;
             string pid = "";
+            int Id = db.Slots.Count();
             List<Slot> tmp = new List<Slot>();
-            //db.Slots.
+            foreach(Slot s in db.Slots)
+            {
+                if (s.Garage.Id == Id)
+                {
+                    db.Slots.Remove(s);
+                }
+            }
             for (int i = 0; i < antal; i++)
             {
                 if (i <= (antal / letters.Length))
@@ -46,7 +53,7 @@ namespace Garage2.Repositories
                 var slot = new Slot();
                 slot.PID = pid;
                 slot.Garage = garage;
-                slot.Id = i;
+                slot.Id = Id;
                 slot.Location = "Skellefteå";
                 //db.Slots.Add(slot);
                 tmp.Add(slot);
