@@ -26,10 +26,11 @@ namespace Garage2.Repositories
             db.Slots.Add(entre2);
 
             db.Vehicles.Add(new Vehicle() { Color="Röd",   Manufacturer="Ferarri", Model="Enzo", RegNr="ENZ401",
-                                             Owner=kurt, VehicleType=VehicleType.Car, Year=1995, Slot=entre1 });
+                                             Owner=kurt, VehicleType=VehicleType.Car, Year=1995 });
 
             db.Vehicles.Add(new Vehicle() { Color="Svart", Manufacturer="Audi", Model="RS8", RegNr="AUD301", 
-                                             Owner=kurt, VehicleType=VehicleType.Car, Year=1999, Slot=entre2 });
+                                             Owner=kurt, VehicleType=VehicleType.Car, Year=1999 });
+
             db.SaveChanges();
         }
     }

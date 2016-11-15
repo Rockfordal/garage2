@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -9,7 +10,7 @@ namespace Garage2.Entities
 {
     public class Slot
     {
-        [Required]
+        [Key]
         public int Id { get; set; }
 
         [MinLength(1), MaxLength(10), DisplayName("ID-nummer")]
@@ -22,6 +23,7 @@ namespace Garage2.Entities
         public virtual Garage Garage { get; set; }
 
         [DisplayName("Fordon")]
-        public Vehicle Vehicle { get; set; }
+        public virtual Vehicle Vehicle { get; set; }
+
     }
 }

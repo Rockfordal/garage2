@@ -10,7 +10,7 @@ namespace Garage2.Entities
 {
     public class Owner
     {
-        [Required]
+        [Key]
         public int Id { get; set; }
 
         [Required, DisplayName("Förnamn")]

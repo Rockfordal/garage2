@@ -9,7 +9,7 @@ namespace Garage2.Entities
 {
     public class Garage
     {
-        [Required]
+        [Key]
         public int Id { get; set; }
 
         [Required, DisplayName("Namn")]

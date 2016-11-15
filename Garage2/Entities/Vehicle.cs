@@ -14,7 +14,7 @@ namespace Garage2.Entities
 
     public class Vehicle
     {
-        [Required]
+        [Key]
         public int Id { get; set; }
 
         [Required, DisplayName("Regnummer")]
@@ -38,9 +38,10 @@ namespace Garage2.Entities
         [DisplayName("Fordonstyp")]
         public VehicleType VehicleType { get; set; }
 
-        public Slot Slot { get; set; }
-
         [DisplayName("Ägare")]
         public Owner Owner { get; set; }
+
+        [DisplayName("Parkering")]
+        public virtual Slot Slot { get; set; }
     }
 }
