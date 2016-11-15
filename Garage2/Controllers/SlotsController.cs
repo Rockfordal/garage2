@@ -79,7 +79,7 @@ namespace Garage2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,PID,Location")] Slot slot)
+        public ActionResult Edit([Bind(Include = "Id,PID,Location,Garage")] Slot slot)
         {
             if (ModelState.IsValid)
             {
