@@ -18,6 +18,7 @@ namespace Garage2.Entities
         [DisplayName("Antal Platser")]
         public int NumberOfSlots { get; set; }
 
-        public virtual ICollection<Slot> Slots { get; set; }
+        [DisplayName("Parkeringar")]
+        public ICollection<Slot> Slots { get; set; }
     }
 }

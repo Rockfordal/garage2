@@ -76,11 +76,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Slot, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-
                 @Html.DropDownList("SlotId", ViewBag.slots as SelectList)
-
 @*                @Html.DropDownList("SlotId", String.Empty)*@
-
                 @*@Html.EnumDropDownListFor(model => model.VehicleType, htmlAttributes: new { @class = "form-control" })*@
                 @*@Html.ValidationMessageFor(model => model.VehicleType, "", new { @class = "text-danger" })*@
             </div>

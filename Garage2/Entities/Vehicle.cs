@@ -42,6 +42,6 @@ namespace Garage2.Entities
         public Owner Owner { get; set; }
 
         [DisplayName("Parkering")]
-        public virtual Slot Slot { get; set; }
+        public Slot Slot { get; set; }
     }
 }

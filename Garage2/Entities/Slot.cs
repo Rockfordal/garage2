@@ -20,9 +20,9 @@ namespace Garage2.Entities
         public string Location { get; set; }
 
         [Required, DisplayName("Garage")]
-        public virtual Garage Garage { get; set; }
+        public Garage Garage { get; set; }
 
         [DisplayName("Fordon")]
-        public virtual Vehicle Vehicle { get; set; }
+        public Vehicle Vehicle { get; set; }
     }
 }
