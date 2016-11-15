@@ -3,7 +3,7 @@ namespace Garage2.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class bortmedslotvehiclerelation : DbMigration
+    public partial class raderavehicleslot : DbMigration
     {
         public override void Up()
         {
