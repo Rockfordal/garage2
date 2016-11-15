@@ -71,6 +71,7 @@ namespace Garage2.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.ListOfGarages = db.Garages;
             return View(slot);
         }
 
@@ -87,6 +88,14 @@ namespace Garage2.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            else
+            {
+                var st = ModelState;
+                var error = ModelState.Values.Last().Errors.Last().ErrorMessage;
+                var exception = ModelState.Values.Last().Errors.Last().Exception;
+                return Content("Nått gick fel: <br/>" + error + "<br/> exception: <br/>" +  exception);
+            }
+            ViewBag.ListOfGarages = db.Garages;
             return View(slot);
         }
 
