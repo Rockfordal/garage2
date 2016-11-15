@@ -9,9 +9,7 @@ namespace Garage2.Repositories
 {
     public class MainRepository
     {
-        private GarageDb db = new GarageDb();
-
-        public void Seed()
+        public void Seed(GarageDb db)
         {
             var kurt = new Owner() { FirstName = "Kurt", LastName = "Ohlsson" };
             db.Owners.Add(kurt);
