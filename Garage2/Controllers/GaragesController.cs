@@ -14,13 +14,13 @@ namespace Garage2.Controllers
 {
     public class GaragesController : Controller
     {
-        private GarageDb db = new GarageDb();
-        private GarageRepository repo = new GarageRepository();
+        static private GarageDb db = new GarageDb();
+        private GarageRepository repo = new GarageRepository(db);
 
         // GET: Seed
         public ActionResult Seed()
         {
-            new MainRepository().Seed();
+            new MainRepository().Seed(db);
             return Redirect("Index");
         }
 
@@ -43,7 +43,7 @@ namespace Garage2.Controllers
                 return HttpNotFound();
             }
             if(r != null)
-                repo.GenerateSlots(garage);
+                repo.GenerateSlots(garage, db);
             return View(garage);
         }
 
@@ -62,7 +62,7 @@ namespace Garage2.Controllers
         {
             if (ModelState.IsValid)
             {
-                repo.GenerateSlots(garage);
+                repo.GenerateSlots(garage, db);
                 db.Garages.Add(garage);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -85,7 +85,7 @@ namespace Garage2.Controllers
             }
             if(r == 1)
             {
-                repo.GenerateSlots(garage);
+                repo.GenerateSlots(garage, db);
                 db.SaveChanges();
             }
             return View(garage);
@@ -136,7 +136,7 @@ namespace Garage2.Controllers
 
         public ActionResult CreateSlots(int id)
         {
-            repo.GenerateSlots(db.Garages.Find(id));
+            repo.GenerateSlots(db.Garages.Find(id), db);
             return RedirectToAction("Index");
         }
 

@@ -9,7 +9,6 @@ namespace Garage2.Repositories
 {
     public class VehicleRepository
     {
-        private GarageDb db = new GarageDb();
 
         public VehicleRepository()
         {
