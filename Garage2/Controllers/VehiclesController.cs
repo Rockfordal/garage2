@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Garage2.DataAccess;
 using Garage2.Entities;
+using Garage2.Models;
 
 namespace Garage2.Controllers
 {
@@ -76,6 +77,7 @@ namespace Garage2.Controllers
             ViewBag.slots = new SelectList(slots, "Id", "PID");
 
             return View(vehicle);
+
         }
 
         // POST: Vehicles/Edit/5

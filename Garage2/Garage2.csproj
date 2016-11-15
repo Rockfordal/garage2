@@ -184,6 +184,7 @@
       <DependentUpon>201611150915266_vehicleslot.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\EditVehicleViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\GarageRepository.cs" />
     <Compile Include="Repositories\MainRepository.cs" />
@@ -251,9 +252,7 @@
     <Content Include="Views\Owners\Edit.cshtml" />
     <Content Include="Views\Owners\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

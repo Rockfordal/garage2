@@ -31,7 +31,7 @@ namespace Garage2.Controllers
         }
 
         // GET: Garages/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? id, int? r)
         {
             if (id == null)
             {
@@ -42,6 +42,8 @@ namespace Garage2.Controllers
             {
                 return HttpNotFound();
             }
+            if(r != null)
+                repo.GenerateSlots(garage);
             return View(garage);
         }
 
@@ -60,7 +62,7 @@ namespace Garage2.Controllers
         {
             if (ModelState.IsValid)
             {
-                //repo.GenerateSlots(garage);
+                repo.GenerateSlots(garage);
                 db.Garages.Add(garage);
                 db.SaveChanges();
                 return RedirectToAction("Index");

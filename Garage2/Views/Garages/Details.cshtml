@@ -29,18 +29,17 @@
 
     </dl>
     <dl>
-        <dt>
-            
-        </dt>
+        
         @foreach (var s in Model.Slots)
         {
-            @s.PID
-            
-            <br />
+            <dt>
+                @s.PID
+            </dt>
         }
     </dl>
 </div>
 <p>
+    @Html.ActionLink("Regenerate slots", "Details", new { r = 1 });
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
