@@ -243,6 +243,7 @@
     <Content Include="Views\Slots\Delete.cshtml" />
     <Content Include="Views\Slots\Details.cshtml" />
     <Content Include="Views\Slots\Edit.cshtml" />
+    <None Include="Views\Slots\Edit.cshtml.old" />
     <Content Include="Views\Slots\Index.cshtml" />
     <Content Include="Views\Owners\Create.cshtml" />
     <Content Include="Views\Owners\Delete.cshtml" />

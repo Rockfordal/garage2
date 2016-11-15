@@ -71,6 +71,10 @@ namespace Garage2.Controllers
             {
                 return HttpNotFound();
             }
+
+            var slots = new List<Slot>() { new Slot() { PID = "A01" }, new Slot() { PID = "A02" } };
+            ViewBag.slots = new SelectList(slots, "Id", "PID");
+
             return View(vehicle);
         }
 

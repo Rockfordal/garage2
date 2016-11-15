@@ -24,6 +24,5 @@ namespace Garage2.Entities
 
         [DisplayName("Fordon")]
         public virtual Vehicle Vehicle { get; set; }
-
     }
 }

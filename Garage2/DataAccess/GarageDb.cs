@@ -18,7 +18,7 @@ namespace Garage2.DataAccess
         public DbSet<Owner>   Owners { get; set; }
 
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+       protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
@@ -28,5 +28,5 @@ namespace Garage2.DataAccess
         }
 
         // public System.Data.Entity.DbSet<Garage2.Entities.Garage> Garages { get; set; }
-    }
+    } 
 }
