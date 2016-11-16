@@ -129,6 +129,7 @@
     <Compile Include="Entities\Owner.cs" />
     <Compile Include="Entities\Slot.cs" />
     <Compile Include="Entities\Vehicle.cs" />
+    <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -148,11 +149,12 @@
     <Compile Include="Migrations\201611160915454_vehicle.Designer.cs">
       <DependentUpon>201611160915454_vehicle.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611160918391_slot_1o1_vehicle.cs" />
-    <Compile Include="Migrations\201611160918391_slot_1o1_vehicle.Designer.cs">
-      <DependentUpon>201611160918391_slot_1o1_vehicle.cs</DependentUpon>
+    <Compile Include="Migrations\201611161210574_vehicle1-o-1slot.cs" />
+    <Compile Include="Migrations\201611161210574_vehicle1-o-1slot.Designer.cs">
+      <DependentUpon>201611161210574_vehicle1-o-1slot.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\EditVehicleVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\GarageRepository.cs" />
     <Compile Include="Repositories\MainRepository.cs" />
@@ -221,7 +223,7 @@
     <None Include="Views\Slots\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
+    <Folder Include="Converters\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -243,8 +245,8 @@
     <EmbeddedResource Include="Migrations\201611160915454_vehicle.resx">
       <DependentUpon>201611160915454_vehicle.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611160918391_slot_1o1_vehicle.resx">
-      <DependentUpon>201611160918391_slot_1o1_vehicle.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201611161210574_vehicle1-o-1slot.resx">
+      <DependentUpon>201611161210574_vehicle1-o-1slot.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

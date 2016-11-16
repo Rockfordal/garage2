@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Garage2.DataAccess;
 using Garage2.Entities;
+using Garage2.Models;
 
 namespace Garage2.Controllers
 {
@@ -75,13 +76,47 @@ namespace Garage2.Controllers
             var slots = db.Slots;
             var slotList = slots.ToList();
 
-            //return View(db.Slots.ToList());
             if (db.Vehicles.ToList().Count() == 0)
             {
                 return Content("Hittade inga slots");
             }
+
             //return Content(slotList.Count().ToString());
-            ViewBag.Slots = new SelectList(slots, "Id", "PID");
+            //ViewBag.Slots = new SelectList(slotList, "Id", "PID");
+            //ViewBag.Slots = slotList;
+
+            var slotQuery = from s in db.Slots select s;
+
+            if (vehicle.Slot != null)
+                ViewBag.Slot = new SelectList(slotQuery, "Id", "PID", vehicle.Slot.Id);
+            else
+                ViewBag.Slot = new SelectList(slotQuery, "Id", "PID", null);
+            //selectedSlot = PopulateSlotsDropDownList(selectedSlot;
+
+            var veh = new EditVehicleVM();
+            veh.Id = vehicle.Id;
+            veh.Manufacturer = vehicle.Manufacturer;
+            veh.Model = vehicle.Model;
+            veh.NumberOfWheels = vehicle.NumberOfWheels;
+            veh.Owner = vehicle.Owner;
+            veh.RegNr = vehicle.RegNr;
+            veh.VehicleType = vehicle.VehicleType;
+            veh.Year = vehicle.Year;
+            //veh.Slots = (SelectListItem) slotQuery.ToList();
+
+            //var selectedId = null;
+            //slotQuery.ToSelectItems(selectdId);
+
+            //IEnumerable<Slot> ieslots = db.Slots;
+            //IEnumerable<SelectListItem> sellistitems = (IEnumerable<SelectListItem>) ieslots;
+            //veh.Slots = new SelectList(  sellistitems, "Id", "PID");
+
+            //veh.Slots = new SelectList(
+            //    db.Slots.ToSelectListItems(null)
+            //);
+
+            veh.Slots = new SelectList(db.Slots, "Id", "PID");
+
             return View(vehicle);
         }
 
@@ -90,14 +125,15 @@ namespace Garage2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,RegNr,Manufacturer,Model,Color,NumberOfWheels,Year,VehicleType,Slot")] Vehicle vehicle)
+        public ActionResult Edit([Bind(Include = "Id,RegNr,Manufacturer,Model,Color,NumberOfWheels,Year,VehicleType,Slot, Slot_Id")] Vehicle vehicle)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(vehicle).State = EntityState.Modified;
-                var testSlot = db.Slots.Find(4);
-                var slot = vehicle.Slot;
-                vehicle.Slot = testSlot;
+                //var testSlot = db.Slots.Find(4);
+                //var slot = vehicle.Slot;
+                //vehicle.Slot = testSlot;
+                var v = vehicle;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -129,6 +165,15 @@ namespace Garage2.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        private void PopulateSlotsDropDownList(object selectedSlot = null)
+        {
+            var slotQuery = from s in db.Slots
+                                   // orderby d.Name
+                                   select s;
+            ViewBag.SlotID = new SelectList(slotQuery, "SlotId", "Name", selectedSlot);
+            //ViewBag.Slots = new SelectList(slotList, "Id", "PID");
+        } 
 
         protected override void Dispose(bool disposing)
         {
