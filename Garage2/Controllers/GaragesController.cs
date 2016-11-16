@@ -14,37 +14,45 @@ namespace Garage2.Controllers
 {
     public class GaragesController : Controller
     {
-        static private GarageDb db = new GarageDb();
-        private GarageRepository repo = new GarageRepository(db);
+        private GarageRepository repo = new GarageRepository();
 
         // GET: Seed
         public ActionResult Seed()
         {
-            new MainRepository().Seed(db);
-            return Redirect("Index");
+            //new MainRepository().Seed();
+            //return Redirect("Index");
+            throw new NotImplementedException();
         }
 
         // GET: Garages
         public ActionResult Index()
         {
-            return View(db.Garages.ToList());
+            //return View(db.Garages.ToList());
+            throw new NotImplementedException();
         }
 
         // GET: Garages/Details/5
-        public ActionResult Details(int? id, int? r)
+        public ActionResult Details(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Garage garage = db.Garages.Find(id);
-            if (garage == null)
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+            Garage garage = repo.GetGarageByID(2);
+            if (garage.Slots == null)
             {
                 return HttpNotFound();
             }
-            if(r != null)
-                repo.GenerateSlots(garage, db);
-            return View(garage);
+            //if(r != null)
+            //    if (ModelState.IsValid)
+            //    {
+            //        repo.GenerateSlots(garage);
+                   
+            //    }
+
+
+            return View(repo.GetSlotsInGarage(garage));
+
         }
 
         // GET: Garages/Create
@@ -62,10 +70,12 @@ namespace Garage2.Controllers
         {
             if (ModelState.IsValid)
             {
-                repo.GenerateSlots(garage, db);
-                db.Garages.Add(garage);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                //repo.GenerateSlots(garage, db);
+                //db.Garages.Add(garage);
+                //db.SaveChanges();
+
+                //return RedirectToAction("Index");
+                throw new NotImplementedException();
             }
 
             return View(garage);
@@ -74,21 +84,22 @@ namespace Garage2.Controllers
         // GET: Garages/Edit/5
         public ActionResult Edit(int? id, int? r)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Garage garage = db.Garages.Find(id);
-            if (garage == null)
-            {
-                return HttpNotFound();
-            }
-            if(r == 1)
-            {
-                repo.GenerateSlots(garage, db);
-                db.SaveChanges();
-            }
-            return View(garage);
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+            //Garage garage = db.Garages.Find(id);
+            //if (garage == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            //if(r == 1)
+            //{
+            //    repo.GenerateSlots(garage, db);
+            //    db.SaveChanges();
+            //}
+            //return View(garage);
+            throw new NotImplementedException();
         }
 
         // POST: Garages/Edit/5
@@ -98,28 +109,30 @@ namespace Garage2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Name,NumberOfSlots")] Garage garage)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(garage).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(garage);
+            //if (ModelState.IsValid)
+            //{
+            //    db.Entry(garage).State = EntityState.Modified;
+            //    db.SaveChanges();
+            //    return RedirectToAction("Index");
+            //}
+            //return View(garage);
+            throw new NotImplementedException();
         }
 
         // GET: Garages/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Garage garage = db.Garages.Find(id);
-            if (garage == null)
-            {
-                return HttpNotFound();
-            }
-            return View(garage);
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+            //Garage garage = db.Garages.Find(id);
+            //if (garage == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            //return View(garage);
+            throw new NotImplementedException();
         }
 
         // POST: Garages/Delete/5
@@ -127,17 +140,19 @@ namespace Garage2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Garage garage = db.Garages.Find(id);
-            db.Garages.Remove(garage);
+            //Garage garage = db.Garages.Find(id);
+            //db.Garages.Remove(garage);
 
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            //db.SaveChanges();
+            //return RedirectToAction("Index");
+            throw new NotImplementedException();
         }
 
         public ActionResult CreateSlots(int id)
         {
-            repo.GenerateSlots(db.Garages.Find(id), db);
-            return RedirectToAction("Index");
+            //repo.GenerateSlots(db.Garages.Find(id), db);
+            //return RedirectToAction("Index");
+            throw new NotImplementedException();
         }
 
         protected override void Dispose(bool disposing)

@@ -11,13 +11,29 @@ namespace Garage2.Repositories
 {
     public class GarageRepository
     {
-        public GarageRepository(GarageDb db)
+        private GarageDb db = new GarageDb();
+
+        public GarageRepository()
         {
         }
 
+        public List<Slot> GetGarageSots()
+        {
+            return db.Slots.ToList();
+        }
+
+        public Garage GetGarageByID(int id)
+        {
+            return db.Garages.Find(id);
+        }
+
+        public List<Slot> GetSlotsInGarage(Garage g)
+        {
+            return g.Slots.ToList();
+        }
 
 
-        public void GenerateSlots(Garage garage, GarageDb db)
+        public void GenerateSlots(Garage garage)
         {
             char[] letters = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H' };
             var antal = garage.NumberOfSlots;
@@ -38,21 +54,20 @@ namespace Garage2.Repositories
                 }
 
                 if(n < 10)
-                {
                     t = "0" + n.ToString();
-                }
                 else
-                {
                     t = n.ToString("0");
-                }
                 var slot = new Slot();
                 slot.PID = letters[index].ToString() + t;
                 slot.Garage = garage;
                 slot.Location = "Skellefteå";
-                //db.Slots.Add(slot);
+                db.Slots.Add(slot);
+                
                 tmp.Add(slot);
             }
             garage.Slots = tmp;
+            db.Entry(garage).State = EntityState.Modified;
+            db.SaveChanges();
         }
     }
 }

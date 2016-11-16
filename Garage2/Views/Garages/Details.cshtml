@@ -1,5 +1,4 @@
-﻿@model Garage2.Entities.Garage
-
+﻿@model IEnumerable<Garage2.Entities.Slot>
 
 @{
     ViewBag.Title = "Details";
@@ -7,39 +6,34 @@
 
 <h2>Details</h2>
 
-<div>
-    <h4>Garage</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NumberOfSlots)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NumberOfSlots)
-        </dd>
-
-    </dl>
-    <dl>
-        
-        @foreach (var s in Model.Slots)
-        {
-            <dt>
-                @s.PID
-            </dt>
-        }
-    </dl>
-</div>
 <p>
-    @Html.ActionLink("Regenerate slots", "Details", new { r = 1 });
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Create New", "Create")
 </p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Location)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

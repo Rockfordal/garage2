@@ -117,6 +117,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Classes\FormattedDbEntityValidationException.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="Controllers\GaragesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -231,7 +232,6 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Garages\Create.cshtml" />
     <Content Include="Views\Garages\Delete.cshtml" />
-    <Content Include="Views\Garages\Details.cshtml" />
     <Content Include="Views\Garages\Edit.cshtml" />
     <Content Include="Views\Garages\Index.cshtml" />
     <Content Include="Views\Vehicles\Create.cshtml" />
@@ -243,6 +243,7 @@
     <Content Include="Views\Slots\Delete.cshtml" />
     <Content Include="Views\Slots\Details.cshtml" />
     <Content Include="Views\Slots\Edit.cshtml" />
+    <Content Include="Views\Garages\Details.cshtml" />
     <None Include="Views\Slots\Edit.cshtml.old" />
     <Content Include="Views\Slots\Index.cshtml" />
     <Content Include="Views\Owners\Create.cshtml" />

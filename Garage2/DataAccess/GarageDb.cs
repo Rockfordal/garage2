@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
 
@@ -10,7 +11,9 @@ namespace Garage2.DataAccess
     public class GarageDb : DbContext
     {
         public GarageDb() : base("DefaultConnection")
-        { }
+        { 
+            
+        }
 
         public DbSet<Garage>  Garages { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
@@ -20,6 +23,8 @@ namespace Garage2.DataAccess
 
        protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Slot>().ToTable("Slots");
+
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Slot>()
@@ -27,6 +32,19 @@ namespace Garage2.DataAccess
               .WithOptionalDependent(v => v.Slot).Map(p => p.MapKey("VehicleId"));
         }
 
+
+       public override int SaveChanges()
+       {
+           try
+           {
+               return base.SaveChanges();
+           }
+           catch (DbEntityValidationException e)
+           {
+               var newException = new FormattedDbEntityValidationException(e);
+               throw newException;
+           }
+       }
         // public System.Data.Entity.DbSet<Garage2.Entities.Garage> Garages { get; set; }
     } 
 }
