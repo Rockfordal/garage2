@@ -18,7 +18,7 @@ namespace Garage2.Controllers
         // GET: Vehicles
         public ActionResult Index()
         {
-            return View(db.Vehicles.Include("Owner").ToList());
+            return View(db.Vehicles.Include("Owner").Include("Slot").ToList());
         }
 
         // GET: Vehicles/Details/5
@@ -72,11 +72,17 @@ namespace Garage2.Controllers
                 return HttpNotFound();
             }
 
-            var slots = new List<Slot>() { new Slot() { PID = "A01" }, new Slot() { PID = "A02" } };
-            ViewBag.slots = new SelectList(slots, "Id", "PID");
+            var slots = db.Slots;
+            var slotList = slots.ToList();
 
+            //return View(db.Slots.ToList());
+            if (db.Vehicles.ToList().Count() == 0)
+            {
+                return Content("Hittade inga slots");
+            }
+            //return Content(slotList.Count().ToString());
+            ViewBag.Slots = new SelectList(slots, "Id", "PID");
             return View(vehicle);
-
         }
 
         // POST: Vehicles/Edit/5
@@ -84,11 +90,14 @@ namespace Garage2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,RegNr,Manufacturer,Model,Color,NumberOfWheels,Year,VehicleType, Slot")] Vehicle vehicle)
+        public ActionResult Edit([Bind(Include = "Id,RegNr,Manufacturer,Model,Color,NumberOfWheels,Year,VehicleType,Slot")] Vehicle vehicle)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(vehicle).State = EntityState.Modified;
+                var testSlot = db.Slots.Find(4);
+                var slot = vehicle.Slot;
+                vehicle.Slot = testSlot;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

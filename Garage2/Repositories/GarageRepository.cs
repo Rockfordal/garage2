@@ -29,9 +29,25 @@ namespace Garage2.Repositories
 
         public List<Slot> GetSlotsInGarage(Garage g)
         {
-            return g.Slots.ToList();
+            return db.Slots.Where(s => s.Garage.Id == g.Id).OrderBy(s => s.PID).ToList();
+        }
+        public List<Slot> GetSlotsInGarage(int id)
+        {
+            return db.Slots.Where(s => s.Garage.Id == id).OrderBy(s => s.PID).ToList();
         }
 
+        public void CreateGarage(Garage g)
+        {
+            db.Entry(g).State = EntityState.Modified;
+            GenerateSlots(g);
+            db.Garages.Add(g);
+            db.SaveChanges();
+        }
+
+        public List<Garage> GetAllGarages()
+        {
+            return db.Garages.ToList();
+        }
 
         public void GenerateSlots(Garage garage)
         {
@@ -66,8 +82,8 @@ namespace Garage2.Repositories
                 tmp.Add(slot);
             }
             garage.Slots = tmp;
-            db.Entry(garage).State = EntityState.Modified;
-            db.SaveChanges();
+            //db.SaveChanges();
+            
         }
     }
 }

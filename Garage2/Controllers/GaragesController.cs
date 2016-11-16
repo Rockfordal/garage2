@@ -27,8 +27,8 @@ namespace Garage2.Controllers
         // GET: Garages
         public ActionResult Index()
         {
-            //return View(db.Garages.ToList());
-            throw new NotImplementedException();
+            return View(repo.GetAllGarages());
+            //throw new NotImplementedException();
         }
 
         // GET: Garages/Details/5
@@ -38,7 +38,7 @@ namespace Garage2.Controllers
             //{
             //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             //}
-            Garage garage = repo.GetGarageByID(2);
+            
             //if (garage.Slots == null)
             //{
             //    return HttpNotFound();
@@ -49,10 +49,9 @@ namespace Garage2.Controllers
             //        repo.GenerateSlots(garage);
                    
             //    }
-
-
-            return View(repo.GetSlotsInGarage(garage));
-
+            Garage garage = repo.GetGarageByID(id.Value);
+            garage.Slots = repo.GetSlotsInGarage(garage);
+            return View(garage);
         }
 
         // GET: Garages/Create
@@ -70,12 +69,11 @@ namespace Garage2.Controllers
         {
             if (ModelState.IsValid)
             {
-                //repo.GenerateSlots(garage, db);
-                //db.Garages.Add(garage);
-                //db.SaveChanges();
+                repo.CreateGarage(garage);
+                
 
-                //return RedirectToAction("Index");
-                throw new NotImplementedException();
+                return RedirectToAction("Index");
+                //throw new NotImplementedException();
             }
 
             return View(garage);
@@ -122,17 +120,17 @@ namespace Garage2.Controllers
         // GET: Garages/Delete/5
         public ActionResult Delete(int? id)
         {
-            //if (id == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
-            //Garage garage = db.Garages.Find(id);
-            //if (garage == null)
-            //{
-            //    return HttpNotFound();
-            //}
-            //return View(garage);
-            throw new NotImplementedException();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Garage garage = repo.GetGarageByID(id.Value);
+            if (garage == null)
+            {
+                return HttpNotFound();
+            }
+            return View(garage);
+            //throw new NotImplementedException();
         }
 
         // POST: Garages/Delete/5

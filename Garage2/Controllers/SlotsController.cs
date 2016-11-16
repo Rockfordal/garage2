@@ -73,6 +73,7 @@ namespace Garage2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Slot slot = db.Slots.Find(id);
             if (slot == null)
             {
