@@ -28,12 +28,18 @@
 
     </dl>
 
-    <dl class="dl-horizontal">
+    
         @foreach(var s in Model.Slots)
         {
-            <dd>@Html.DisplayFor(model => s.PID)</dd>
+            <dl class="dl-horizontal">
+                <dd>@Html.DisplayFor(model => s.PID)</dd>
+                @if (s.Vehicle != null)
+                {
+                    <dd>@Html.DisplayFor(model => s.Vehicle.Manufacturer)</dd>
+                    <dd>@Html.DisplayFor(model => s.Vehicle.Model)</dd>
+                }
+            </dl>
         }
-    </dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
