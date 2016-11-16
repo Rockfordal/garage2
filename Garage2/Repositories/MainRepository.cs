@@ -7,21 +7,24 @@ using System.Web;
 
 namespace Garage2.Repositories
 {
-    public class MainRepository
+    public static class MainRepository
     {
-        public void Seed(GarageDb db)
+        public static void Seed(GarageDb db)
         {
             var kurt = new Owner() { FirstName = "Kurt", LastName = "Ohlsson" };
             db.Owners.Add(kurt);
 
-            var phuset = new Garage() { Name = "P-Huset", NumberOfSlots = 10 };
+            var phuset = new Garage() {  Name = "P-Huset", NumberOfSlots = 10 };
             db.Garages.Add(phuset);
 
-            var entre1 = new Slot() { Garage = phuset, Location = "Vid entrén" };
+            var falmark = new Garage() { Name = "Falmark", NumberOfSlots = 10 };
+            db.Garages.Add(falmark);
+
+            var entre1 = new Slot() { Garage = phuset, Location = "Vid entrén", PID = "E01" };
             db.Slots.Add(entre1);
 
-            var entre2 = new Slot() { Garage = phuset, Location = "Vid entrén" };
-            db.Slots.Add(entre2);
+            var baksidan = new Slot() { Garage = phuset, Location = "Baksidan", PID = "B01" };
+            db.Slots.Add(baksidan);
 
             db.Vehicles.Add(new Vehicle() { Color="Röd",   Manufacturer="Ferarri", Model="Enzo", RegNr="ENZ401",
                                              Owner=kurt, VehicleType=VehicleType.Car, Year=1995 });
