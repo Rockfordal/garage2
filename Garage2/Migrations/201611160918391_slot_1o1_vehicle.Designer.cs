@@ -7,13 +7,13 @@ namespace Garage2.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class PID : IMigrationMetadata
+    public sealed partial class slot_1o1_vehicle : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(PID));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(slot_1o1_vehicle));
         
         string IMigrationMetadata.Id
         {
-            get { return "201611141047424_PID"; }
+            get { return "201611160918391_slot_1o1_vehicle"; }
         }
         
         string IMigrationMetadata.Source

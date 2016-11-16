@@ -135,53 +135,21 @@
     <Compile Include="Migrations\201611141012473_garage.Designer.cs">
       <DependentUpon>201611141012473_garage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611141018597_Vehicles.cs" />
-    <Compile Include="Migrations\201611141018597_Vehicles.Designer.cs">
-      <DependentUpon>201611141018597_Vehicles.cs</DependentUpon>
+    <Compile Include="Migrations\201611141010423_Owners.cs" />
+    <Compile Include="Migrations\201611141010423_Owners.Designer.cs">
+      <DependentUpon>201611141010423_Owners.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611141020073_Slots.cs" />
-    <Compile Include="Migrations\201611141020073_Slots.Designer.cs">
-      <DependentUpon>201611141020073_Slots.cs</DependentUpon>
+    <Compile Include="Migrations\201611160912195_innanvehicleslot.cs" />
+    <Compile Include="Migrations\201611160912195_innanvehicleslot.Designer.cs">
+      <DependentUpon>201611160912195_innanvehicleslot.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611141020423_Owners.cs" />
-    <Compile Include="Migrations\201611141020423_Owners.Designer.cs">
-      <DependentUpon>201611141020423_Owners.cs</DependentUpon>
+    <Compile Include="Migrations\201611160915454_vehicle.cs" />
+    <Compile Include="Migrations\201611160915454_vehicle.Designer.cs">
+      <DependentUpon>201611160915454_vehicle.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611141022087_Slot belongs to garage.cs" />
-    <Compile Include="Migrations\201611141022087_Slot belongs to garage.Designer.cs">
-      <DependentUpon>201611141022087_Slot belongs to garage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611141040389_Vehicle Manufactuer.cs" />
-    <Compile Include="Migrations\201611141040389_Vehicle Manufactuer.Designer.cs">
-      <DependentUpon>201611141040389_Vehicle Manufactuer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611141047424_PID.cs" />
-    <Compile Include="Migrations\201611141047424_PID.Designer.cs">
-      <DependentUpon>201611141047424_PID.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611141201422_Required på några fält.cs" />
-    <Compile Include="Migrations\201611141201422_Required på några fält.Designer.cs">
-      <DependentUpon>201611141201422_Required på några fält.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611141235531_a vehicle has one owner.cs" />
-    <Compile Include="Migrations\201611141235531_a vehicle has one owner.Designer.cs">
-      <DependentUpon>201611141235531_a vehicle has one owner.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611141249271_vehicletype.cs" />
-    <Compile Include="Migrations\201611141249271_vehicletype.Designer.cs">
-      <DependentUpon>201611141249271_vehicletype.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611141441255_validering på PID.cs" />
-    <Compile Include="Migrations\201611141441255_validering på PID.Designer.cs">
-      <DependentUpon>201611141441255_validering på PID.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611150914195_raderavehicleslot.cs" />
-    <Compile Include="Migrations\201611150914195_raderavehicleslot.Designer.cs">
-      <DependentUpon>201611150914195_raderavehicleslot.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611150915266_vehicleslot.cs" />
-    <Compile Include="Migrations\201611150915266_vehicleslot.Designer.cs">
-      <DependentUpon>201611150915266_vehicleslot.cs</DependentUpon>
+    <Compile Include="Migrations\201611160918391_slot_1o1_vehicle.cs" />
+    <Compile Include="Migrations\201611160918391_slot_1o1_vehicle.Designer.cs">
+      <DependentUpon>201611160918391_slot_1o1_vehicle.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -242,14 +210,14 @@
     <Content Include="Views\Slots\Create.cshtml" />
     <Content Include="Views\Slots\Delete.cshtml" />
     <Content Include="Views\Slots\Details.cshtml" />
-    <Content Include="Views\Slots\Edit.cshtml" />
-    <None Include="Views\Slots\Edit.cshtml.old" />
     <Content Include="Views\Slots\Index.cshtml" />
     <Content Include="Views\Owners\Create.cshtml" />
     <Content Include="Views\Owners\Delete.cshtml" />
     <Content Include="Views\Owners\Details.cshtml" />
     <Content Include="Views\Owners\Edit.cshtml" />
     <Content Include="Views\Owners\Index.cshtml" />
+    <None Include="Views\Slots\Edit.cshtml.genererad" />
+    <None Include="Views\Slots\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -265,41 +233,17 @@
     <EmbeddedResource Include="Migrations\201611141012473_garage.resx">
       <DependentUpon>201611141012473_garage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611141018597_Vehicles.resx">
-      <DependentUpon>201611141018597_Vehicles.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201611141010423_Owners.resx">
+      <DependentUpon>201611141010423_Owners.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611141020073_Slots.resx">
-      <DependentUpon>201611141020073_Slots.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201611160912195_innanvehicleslot.resx">
+      <DependentUpon>201611160912195_innanvehicleslot.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611141020423_Owners.resx">
-      <DependentUpon>201611141020423_Owners.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201611160915454_vehicle.resx">
+      <DependentUpon>201611160915454_vehicle.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611141022087_Slot belongs to garage.resx">
-      <DependentUpon>201611141022087_Slot belongs to garage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611141040389_Vehicle Manufactuer.resx">
-      <DependentUpon>201611141040389_Vehicle Manufactuer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611141047424_PID.resx">
-      <DependentUpon>201611141047424_PID.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611141201422_Required på några fält.resx">
-      <DependentUpon>201611141201422_Required på några fält.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611141235531_a vehicle has one owner.resx">
-      <DependentUpon>201611141235531_a vehicle has one owner.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611141249271_vehicletype.resx">
-      <DependentUpon>201611141249271_vehicletype.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611141441255_validering på PID.resx">
-      <DependentUpon>201611141441255_validering på PID.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611150914195_raderavehicleslot.resx">
-      <DependentUpon>201611150914195_raderavehicleslot.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611150915266_vehicleslot.resx">
-      <DependentUpon>201611150915266_vehicleslot.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201611160918391_slot_1o1_vehicle.resx">
+      <DependentUpon>201611160918391_slot_1o1_vehicle.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

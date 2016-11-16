@@ -12,19 +12,25 @@ namespace Garage2.DataAccess
         public GarageDb() : base("DefaultConnection")
         { }
 
-        public DbSet<Garage>  Garages { get; set; }
+        public DbSet<Garage>  Garages  { get; set; }
+        public DbSet<Owner>   Owners   { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
-        public DbSet<Slot>    Slots { get; set; }
-        public DbSet<Owner>   Owners { get; set; }
+        public DbSet<Slot>    Slots    { get; set; }
 
 
-       protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
+            //modelBuilder.Entity<Slot>()
+            //  .HasOptional<Vehicle>(s => s.Vehicle)
+            //  .WithOptionalDependent(v => v.Slot).Map(p => p.MapKey("VehicleId"));
+
             modelBuilder.Entity<Slot>()
-              .HasOptional<Vehicle>(s => s.Vehicle)
-              .WithOptionalDependent(v => v.Slot).Map(p => p.MapKey("VehicleId"));
+                //.HasKey(s => s.Id)
+                //.Property(s => s.Id)
+                //.HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+                .HasOptional(s => s.Vehicle).WithOptionalPrincipal(l => l.Slot);
         }
 
         // public System.Data.Entity.DbSet<Garage2.Entities.Garage> Garages { get; set; }

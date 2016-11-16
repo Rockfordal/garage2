@@ -20,7 +20,7 @@ namespace Garage2.Controllers
         // GET: Seed
         public ActionResult Seed()
         {
-            new MainRepository().Seed(db);
+            //new MainRepository().Seed(db);
             return Redirect("Index");
         }
 
@@ -144,7 +144,7 @@ namespace Garage2.Controllers
         {
             if (disposing)
             {
-                //db.Dispose();
+                db.Dispose();
             }
             base.Dispose(disposing);
         }
