@@ -39,10 +39,10 @@ namespace Garage2.Controllers
             //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             //}
             Garage garage = repo.GetGarageByID(2);
-            if (garage.Slots == null)
-            {
-                return HttpNotFound();
-            }
+            //if (garage.Slots == null)
+            //{
+            //    return HttpNotFound();
+            //}
             //if(r != null)
             //    if (ModelState.IsValid)
             //    {
