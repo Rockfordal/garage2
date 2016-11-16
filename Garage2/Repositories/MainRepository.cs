@@ -14,16 +14,16 @@ namespace Garage2.Repositories
             var kurt = new Owner() { FirstName = "Kurt", LastName = "Ohlsson" };
             db.Owners.Add(kurt);
 
-            var phuset = new Garage() { Name = "P-Huset", NumberOfSlots = 10 };
+            var phuset = new Garage() {  Name = "P-Huset", NumberOfSlots = 10 };
             db.Garages.Add(phuset);
 
             var falmark = new Garage() { Name = "Falmark", NumberOfSlots = 10 };
             db.Garages.Add(falmark);
 
-            var entre1 = new Slot() { Garage = phuset, Location = "Vid entrén" };
+            var entre1 = new Slot() { Garage = phuset, Location = "Vid entrén", PID = "E01" };
             db.Slots.Add(entre1);
 
-            var baksidan = new Slot() { Garage = phuset, Location = "Baksidan" };
+            var baksidan = new Slot() { Garage = phuset, Location = "Baksidan", PID = "B01" };
             db.Slots.Add(baksidan);
 
             db.Vehicles.Add(new Vehicle() { Color="Röd",   Manufacturer="Ferarri", Model="Enzo", RegNr="ENZ401",
