@@ -19,8 +19,8 @@ namespace Garage2.Controllers
         // GET: Seed
         public ActionResult Seed()
         {
-            //new MainRepository().Seed();
-            //return Redirect("Index");
+            MainRepository.Seed(new GarageDb());
+            return Content("Seed utförd");
         }
 
         public ActionResult Select(int? id)
