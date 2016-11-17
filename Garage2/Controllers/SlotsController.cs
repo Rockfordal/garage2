@@ -29,10 +29,10 @@ namespace Garage2.Controllers
             if (Garage2.Repositories.MainRepository.selectedGarage != null)
             {
                 var currentGarageId = Garage2.Repositories.MainRepository.selectedGarage.Id;
-                slots = db.Slots.Where(s => s.Garage.Id == currentGarageId).ToList();
+                slots = db.Slots.Include("Vehicle").Where(s => s.Garage.Id == currentGarageId).ToList();
             } else
             {
-                slots = db.Slots.ToList();
+                slots = db.Slots.Include("Vehicle").ToList();
             }
             return View(slots);
         }
