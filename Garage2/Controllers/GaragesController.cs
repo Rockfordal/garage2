@@ -21,7 +21,16 @@ namespace Garage2.Controllers
         {
             MainRepository.Seed(repo.db);
             return Redirect("Index");
-            throw new NotImplementedException();
+        }
+
+        public ActionResult Select(int? id)
+        {
+            if (id != null)
+            {
+                int myid = (int) id;
+                MainRepository.selectedGarage = repo.GetGarageByID(myid);
+            }
+            return Redirect(Request.UrlReferrer.ToString());
         }
 
         // GET: Garages
