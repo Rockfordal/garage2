@@ -20,5 +20,11 @@ namespace Garage2.Entities
         [DisplayName("Fordon")]
         public Vehicle Vehicle { get; set; }
 
+        [DisplayName("Parkeringstid")]
+        public string ParkTime { get; set; }
+
+        [DisplayName("Betald Parkeringstid")]
+        public string PayedParkTime { get; set; }
+
     }
 }
