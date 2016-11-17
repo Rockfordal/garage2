@@ -73,23 +73,18 @@
             </div>
         </div>
 
-        @*<div class="form-group">
+        <div class="form-group">
             @Html.LabelFor(model => model.Slot, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                 @Html.DropDownList("SlotId", ViewBag.Slots as SelectList, new { @class = "form-control" })
-                @Html.DropDownListFor(m => m.Slot, ViewBag.Slots as SelectList)
-                @Html.DropDownListFor(m => m.Slot, new SelectList(ViewBag.Slots, "Id", "PID"), new { @class = "form-control" })
-                 @Html.DropDownList("Slot", new SelectList(ViewBag.Slots, "Id", "PID", Model.Slot), "- Välj Garage - ", new { @class = "form-control" })
-                new SelectList(slotList, "Id", "Name", Model.CardId), //"-- Select --", new { id = "Cards" } )
-               @Html.DropDownList("Slot", new SelectList(ViewBag.Slots, "Id", "PID"), "- Välj Plats - ", new { @class = "form-control" })
-                @Html.HiddenFor(v => v.Slot)
-            </div>
-        </div>*@
-
-        <div class="form-group">
-            <label class="control-label col-md-2" for="SlotId">Plats</label>
-            <div class="col-md-10">
-                @Html.DropDownList("Slot", null, "P-plats", new { @class = "form-control"})
+                 @*@Html.DropDownList("SlotId", ViewBag.Slots as SelectList, new { @class = "form-control" })*@
+                @*@Html.DropDownListFor(m => m.Slot, ViewBag.Slots as SelectList)*@
+                @*@Html.DropDownListFor(m => m.Slot, new SelectList(ViewBag.Slots, "Id", "PID"), new { @class = "form-control" })*@
+                 @*@Html.DropDownList("Slot", new SelectList(ViewBag.Slots, "Id", "PID", Model.Slot), "- Välj Garage - ", new { @class = "form-control" })*@
+                @*new SelectList(slotList, "Id", "Name", Model.CardId), //"-- Select --", new { id = "Cards" } )*@
+               @*@Html.DropDownList("slotId", new SelectList(ViewBag.Slots, "Id", "PID"), "- Välj Plats - ", new { @class = "form-control" })*@
+                @*@Html.DropDownList("slotId", null, "P-plats", new { @class = "form-control"})*@
+                @*@Html.DropDownList("slotId", ViewBag.Slots, null, new { @class = "form-control"})*@
+               @*@Html.DropDownList("slotId", ViewBag.Slots, "- Välj Plats - ", new { @class = "form-control" })*@
             </div>
         </div>
 
