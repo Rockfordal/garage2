@@ -14,9 +14,9 @@ namespace Garage2.Controllers
 {
     public class SlotsController : ApplicationController
     {
+        
+        private static SlotRepository repo = new SlotRepository();
         private GarageDb db = new GarageDb();
-        private SlotRepository repo = new SlotRepository();
-
 
         public ActionResult Test()
         {
@@ -96,7 +96,7 @@ namespace Garage2.Controllers
             if (ModelState.IsValid)
             {
                 repo.Park(v_id, id);
-                
+                db.SaveChanges();
             }
             return RedirectToAction("Index");
         }

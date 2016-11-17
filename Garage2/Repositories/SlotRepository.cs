@@ -9,7 +9,7 @@ namespace Garage2.Repositories
 {
     public class SlotRepository
     {
-        private GarageDb db = new GarageDb();
+        public GarageDb db = new GarageDb();
 
         public SlotRepository()
         { }
