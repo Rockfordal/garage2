@@ -38,24 +38,42 @@
             @Html.DisplayNameFor(model => model.Color)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NumberOfWheels)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Year)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.VehicleType)
+            @*@Html.DisplayNameFor(model => model.VehicleType)*@
+            Typ
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
+
+    switch (item.VehicleType)
+    {
+        case Garage2.Entities.VehicleType.Bike:
+            ViewBag.vehicleIcon = "motorcycle";
+            break;
+        case Garage2.Entities.VehicleType.Boat:
+            ViewBag.vehicleIcon = "bathtub";
+            break;
+        case Garage2.Entities.VehicleType.Car:
+            ViewBag.vehicleIcon = "automobile";
+            break;
+        default:
+            ViewBag.vehicleIcon = "truck";
+            break;
+
+    }
+    //ViewBag.vehicleIcon = "fa-truck";
+
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Slot.PID)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Owner.FullName)
+            @Html.DisplayFor(modelItem => item.Owner.FirstName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.RegNr)
@@ -70,18 +88,16 @@
             @Html.DisplayFor(modelItem => item.Color)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.NumberOfWheels)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Year)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.VehicleType)
+            @*@Html.DisplayFor(modelItem => item.VehicleType)*@
+            <i class="fa fa-@ViewBag.vehicleIcon"></i>
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id })
+            @*@Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
         </td>
     </tr>
 }
