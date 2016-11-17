@@ -123,6 +123,7 @@
     <Compile Include="Controllers\GaragesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OwnersController.cs" />
+    <Compile Include="Controllers\ParkassignmentsController.cs" />
     <Compile Include="Controllers\SlotsController.cs" />
     <Compile Include="Controllers\VehiclesController.cs" />
     <Compile Include="DataAccess\GarageDb.cs" />
@@ -242,6 +243,11 @@
     <Content Include="Views\Owners\Edit.cshtml" />
     <Content Include="Views\Owners\Index.cshtml" />
     <Content Include="Views\Garages\Details.cshtml" />
+    <Content Include="Views\Parkassignments\Create.cshtml" />
+    <Content Include="Views\Parkassignments\Delete.cshtml" />
+    <Content Include="Views\Parkassignments\Details.cshtml" />
+    <Content Include="Views\Parkassignments\Edit.cshtml" />
+    <Content Include="Views\Parkassignments\Index.cshtml" />
     <None Include="Views\Slots\Edit.cshtml.genererad" />
     <None Include="Views\Slots\Edit.cshtml" />
   </ItemGroup>

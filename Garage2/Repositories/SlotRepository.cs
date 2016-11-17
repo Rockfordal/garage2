@@ -40,5 +40,18 @@ namespace Garage2.Repositories
                 return null;
         }
 
+        public Vehicle GetVehicleByID(int id)
+        {
+            var vehicle = from v in db.Vehicles
+                          select new { Id = id };
+            return (Vehicle)vehicle;
+        }
+
+        public Slot GetSlotById(int id)
+        {
+            var slot = from s in db.Slots
+                       select new { Id = id };
+            return (Slot)slot;
+        }
     }
 }

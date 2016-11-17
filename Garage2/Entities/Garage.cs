@@ -19,9 +19,11 @@ namespace Garage2.Entities
         [DisplayName("Parkeringar")]
         public ICollection<Slot> Slots { get; set; }
 
-        public void GenerateSlots()
+        private GarageRepository repo = new GarageRepository();
+
+        public void GenerateSlots(Garage g)
         {
-            new GarageRepository().GenerateSlots(this);
+            repo.GenerateSlots(g);
         }
     }
 }

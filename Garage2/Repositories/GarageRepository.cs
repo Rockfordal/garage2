@@ -136,6 +136,8 @@ namespace Garage2.Repositories
                 
                 tmp.Add(slot);
             }
+            //db.Slots.OrderBy(s => s.PID);
+            //tmp.OrderBy(s => s.PID);
             garage.Slots = tmp;
             //db.SaveChanges();
             
