@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Garage2.Entities
@@ -21,10 +22,10 @@ namespace Garage2.Entities
         public Vehicle Vehicle { get; set; }
 
         [DisplayName("Parkeringstid")]
-        public string ParkTime { get; set; }
+        public DateTime ParkTime { get; set; }
 
         [DisplayName("Betald Parkeringstid")]
-        public string PayedParkTime { get; set; }
+        public DateTime PayedParkTime { get; set; }
 
     }
 }
