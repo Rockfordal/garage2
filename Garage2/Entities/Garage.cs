@@ -23,7 +23,7 @@ namespace Garage2.Entities
 
         public void GenerateSlots(Garage g)
         {
-            repo.GenerateSlots(g);
+            repo.PIDGen.GenerateSlots(g, repo.db);
         }
     }
 }

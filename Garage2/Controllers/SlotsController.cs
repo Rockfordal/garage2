@@ -14,9 +14,9 @@ namespace Garage2.Controllers
 {
     public class SlotsController : ApplicationController
     {
+        
+        private static SlotRepository repo = new SlotRepository();
         private GarageDb db = new GarageDb();
-        private SlotRepository repo = new SlotRepository();
-
 
         public ActionResult Test()
         {
@@ -29,6 +29,7 @@ namespace Garage2.Controllers
         // GET: Slots
         public ActionResult Index()
         {
+            ViewBag.Vehicles = db.Vehicles;
             var slots = new List<Slot>();
             if (Garage2.Repositories.MainRepository.selectedGarage != null)
             {
@@ -81,50 +82,27 @@ namespace Garage2.Controllers
 
 
         // GET: Slots/Park
-        public ActionResult Park()
-        {
-            return View();
-        }
-
-        // POST: Slots/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Park(int v_id, int id)
+        public ActionResult Park(int id, int v_id)
         {
             if (ModelState.IsValid)
             {
-                repo.Park(repo.GetVehicleByID(v_id), repo.GetSlotById(id));
+                repo.Park(id, v_id);
                 db.SaveChanges();
-                return RedirectToAction("Index");
             }
-
-            return View(repo.GetSlotById(id));
+            return RedirectToAction("Index");
         }
 
         // GET: Slots/Park
-        public ActionResult UnPark()
-        {
-            return View();
-        }
-
-        // POST: Slots/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult UnPark(int id)
         {
             if (ModelState.IsValid)
             {
-                repo.UnPark(repo.GetSlotById(id));
+                repo.UnPark(id);
                 db.SaveChanges();
-                return RedirectToAction("Index");
             }
-
-            return View(repo.GetSlotById(id));
+            return RedirectToAction("Index");
         }
+
 
         // GET: Slots/Edit/5
         public ActionResult Edit(int? id)
