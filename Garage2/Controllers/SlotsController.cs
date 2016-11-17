@@ -25,7 +25,16 @@ namespace Garage2.Controllers
         // GET: Slots
         public ActionResult Index()
         {
-            return View(db.Slots.ToList());
+            var slots = new List<Slot>();
+            if (Garage2.Repositories.MainRepository.selectedGarage != null)
+            {
+                var currentGarageId = Garage2.Repositories.MainRepository.selectedGarage.Id;
+                slots = db.Slots.Include("Vehicle").Where(s => s.Garage.Id == currentGarageId).ToList();
+            } else
+            {
+                slots = db.Slots.Include("Vehicle").ToList();
+            }
+            return View(slots);
         }
 
         // GET: Slots/Details/5

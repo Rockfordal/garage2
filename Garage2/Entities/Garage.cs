@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Garage2.Repositories;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
@@ -17,5 +18,10 @@ namespace Garage2.Entities
 
         [DisplayName("Parkeringar")]
         public ICollection<Slot> Slots { get; set; }
+
+        public void GenerateSlots()
+        {
+            new GarageRepository().GenerateSlots(this);
+        }
     }
 }
