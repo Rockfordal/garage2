@@ -20,8 +20,9 @@ namespace Garage2.Controllers
 
         public ActionResult Test()
         {
-            int x = 1;
-            var s = x.ToString("0000");
+            //int x = 1;
+            //var s = x.ToString("0000");
+            var s = new RandomRegnr().gimme();
             return Content(s);
         }
 

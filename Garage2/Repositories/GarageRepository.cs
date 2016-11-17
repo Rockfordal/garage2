@@ -92,6 +92,15 @@ namespace Garage2.Repositories
         }
 
         /// <summary>
+        /// Returns a garage or null
+        /// </summary>
+        /// <returns></returns>
+        public Garage GimmeAGarage()
+        {
+            return db.Garages.FirstOrDefault();
+        }
+
+        /// <summary>
         /// Returns all garages
         /// </summary>
         /// <returns></returns>
