@@ -9,7 +9,6 @@ namespace Garage2.Repositories
 {
     public static class MainRepository
     {
-        //public static Garage selectedGarage = null;
         private static Garage _selectedGarage = null;
         private static GarageRepository _garage = new GarageRepository();
         public static Garage selectedGarage
