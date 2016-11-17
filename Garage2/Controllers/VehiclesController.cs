@@ -19,7 +19,27 @@ namespace Garage2.Controllers
         // GET: Vehicles
         public ActionResult Index()
         {
+            ViewBag.VehicleTypes = Enum.GetValues(typeof(VehicleType)).Cast<VehicleType>();
             return View(db.Vehicles.Include("Owner").Include("Slot").ToList());
+        }
+
+        // POST: Vehicles
+        [HttpPost]
+        public ActionResult Index(string search, string type)
+        {
+            ViewBag.VehicleTypes = Enum.GetValues(typeof(VehicleType)).Cast<VehicleType>();
+            ViewBag.type = type;
+
+            ViewBag.Search = search;
+            var vehicles = db.Vehicles
+                .Where(v => (
+                        (v.Manufacturer == search || search == "")
+                     && (v.VehicleType.ToString() == type || type == "")
+                       ))
+                .Include("Owner")
+                .Include("Slot")
+                .ToList();
+            return View(vehicles);
         }
 
         // GET: Vehicles/Details/5
