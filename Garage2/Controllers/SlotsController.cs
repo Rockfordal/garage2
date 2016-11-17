@@ -11,7 +11,7 @@ using Garage2.Entities;
 
 namespace Garage2.Controllers
 {
-    public class SlotsController : Controller
+    public class SlotsController : ApplicationController
     {
         private GarageDb db = new GarageDb();
 

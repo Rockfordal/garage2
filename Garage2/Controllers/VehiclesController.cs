@@ -12,7 +12,7 @@ using Garage2.Models;
 
 namespace Garage2.Controllers
 {
-    public class VehiclesController : Controller
+    public class VehiclesController : ApplicationController
     {
         private GarageDb db = new GarageDb();
 
