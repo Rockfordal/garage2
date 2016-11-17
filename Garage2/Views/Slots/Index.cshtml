@@ -21,6 +21,10 @@
     </ul>
 </li>*@
 
+@foreach(var vehicle in ViewBag.Vehicles)
+{
+    <p>@vehicle.Manufacturer  @vehicle.Model</p>
+}
 
 
 <table class="table">

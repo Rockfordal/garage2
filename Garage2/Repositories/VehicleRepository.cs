@@ -23,6 +23,8 @@ namespace Garage2.Repositories
             {
                 var myVehicles = allVehicles.Where(v => (
                          (v.Owner.Id.ToString() == ownerIdString) ));
+
+                
                 return myVehicles.ToList();
             }
             else

@@ -15,8 +15,11 @@ namespace Garage2.Controllers
     public class SlotsController : ApplicationController
     {
         
-        private static SlotRepository repo = new SlotRepository();
+        private SlotRepository repo = new SlotRepository();
+        private VehicleRepository _vehicle = new VehicleRepository();
+
         private GarageDb db = new GarageDb();
+
 
         public ActionResult Test()
         {
@@ -29,7 +32,7 @@ namespace Garage2.Controllers
         // GET: Slots
         public ActionResult Index()
         {
-            ViewBag.Vehicles = db.Vehicles;
+            ViewBag.Vehicles = _vehicle.GetMyVehicles(true);
             var slots = new List<Slot>();
             if (Garage2.Repositories.MainRepository.selectedGarage != null)
             {
