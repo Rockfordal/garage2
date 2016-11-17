@@ -23,6 +23,7 @@ namespace Garage2.Controllers
             return Content("Seed utförd");
         }
 
+        // GET: Select
         public ActionResult Select(int? id)
         {
             if (id != null)

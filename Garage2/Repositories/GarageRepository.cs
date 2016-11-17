@@ -21,7 +21,6 @@ namespace Garage2.Repositories
         /// <summary>
         /// Returns all existing slots in the database
         /// </summary>
-        /// <returns></returns>
         public List<Slot> GetGarageSlots()
         {
             return db.Slots.ToList();
@@ -31,7 +30,6 @@ namespace Garage2.Repositories
         /// Return a garage via id input
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
         public Garage GetGarageByID(int id)
         {
             return db.Garages.Find(id);
@@ -41,7 +39,6 @@ namespace Garage2.Repositories
         /// Returns a garage with assoiciated slots
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
         public Garage GetGarageByIdWithSlots(int id)
         {
             Garage g = GetGarageByID(id);
@@ -53,7 +50,6 @@ namespace Garage2.Repositories
         /// Returns all slots associated to the garage
         /// </summary>
         /// <param name="g"></param>
-        /// <returns></returns>
         public List<Slot> GetSlotsInGarage(Garage g)
         {
             return db.Slots.Where(s => s.Garage.Id == g.Id).OrderBy(s => s.PID).ToList();
@@ -63,7 +59,6 @@ namespace Garage2.Repositories
         /// Returns all slots associated to the garage via garage id
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
         public List<Slot> GetSlotsInGarage(int id)
         {
             return db.Slots.Where(s => s.Garage.Id == id).OrderBy(s => s.PID).ToList();
@@ -95,7 +90,6 @@ namespace Garage2.Repositories
         /// <summary>
         /// Returns a garage or null
         /// </summary>
-        /// <returns></returns>
         public Garage GimmeAGarage()
         {
             return db.Garages.FirstOrDefault();
@@ -104,7 +98,6 @@ namespace Garage2.Repositories
         /// <summary>
         /// Returns all garages
         /// </summary>
-        /// <returns></returns>
         public List<Garage> GetAllGarages()
         {
             return db.Garages.ToList();
