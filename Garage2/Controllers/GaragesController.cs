@@ -12,7 +12,7 @@ using Garage2.Repositories;
 
 namespace Garage2.Controllers
 {
-    public class GaragesController : Controller
+    public class GaragesController : ApplicationController
     {
         private GarageRepository repo = new GarageRepository();
 
