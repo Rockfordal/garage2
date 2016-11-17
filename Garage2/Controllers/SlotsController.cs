@@ -83,7 +83,7 @@ namespace Garage2.Controllers
         // GET: Slots/Park
         public ActionResult Park()
         {
-            return View();
+            return RedirectToAction("Index");
         }
 
         // POST: Slots/Create
@@ -95,12 +95,10 @@ namespace Garage2.Controllers
         {
             if (ModelState.IsValid)
             {
-                repo.Park(repo.GetVehicleByID(v_id), repo.GetSlotById(id));
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                repo.Park(v_id, id);
+                
             }
-
-            return View(repo.GetSlotById(id));
+            return RedirectToAction("Index");
         }
 
         // GET: Slots/Park
@@ -120,10 +118,8 @@ namespace Garage2.Controllers
             {
                 repo.UnPark(repo.GetSlotById(id));
                 db.SaveChanges();
-                return RedirectToAction("Index");
             }
-
-            return View(repo.GetSlotById(id));
+            return RedirectToAction("Index");
         }
 
         // GET: Slots/Edit/5

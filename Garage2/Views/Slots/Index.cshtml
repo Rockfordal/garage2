@@ -37,7 +37,14 @@
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Park", "Park", new { v_id = item.Id, id = item.Id })
+            @if(item.Vehicle == null)
+            { 
+                @Html.ActionLink("Park", "Park", new { v_id = 1, id = item.Id })
+            }
+            else
+            {
+                @Html.ActionLink("Unpark", "Unpark", new { id = item.Id })
+            }
         </td>
     </tr>
 }

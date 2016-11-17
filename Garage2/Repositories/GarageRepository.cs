@@ -12,6 +12,7 @@ namespace Garage2.Repositories
     public class GarageRepository
     {
         public GarageDb db = new GarageDb();
+        public PIDGenerator PIDGen = new PIDGenerator();
 
         public GarageRepository()
         {
@@ -86,7 +87,7 @@ namespace Garage2.Repositories
         public void CreateGarage(Garage g)
         {
             db.Entry(g).State = EntityState.Modified;
-            GenerateSlots(g);
+            PIDGen.GenerateSlots(g, db);
             db.Garages.Add(g);
             db.SaveChanges();
         }
@@ -109,47 +110,6 @@ namespace Garage2.Repositories
             return db.Garages.ToList();
         }
 
-        /// <summary>
-        /// Generates slots with the format: A letter and 2 digits. eg: A08
-        /// </summary>
-        /// <param name="garage"></param>
-        public void GenerateSlots(Garage garage)
-        {
-            char[] letters = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H' };
-            var antal = garage.NumberOfSlots;
-            int n = 0;
-            string t = "";
-
-            int index = 0;
-
-            List<Slot> tmp = new List<Slot>();
-
-            for (int i = 0; i < antal; i++)
-            {
-                n += 1;
-                if (n > 15)
-                {
-                    index += 1;
-                    n = 1;  
-                }
-
-                if(n < 10)
-                    t = "0" + n.ToString();
-                else
-                    t = n.ToString("0");
-                var slot = new Slot();
-                slot.PID = letters[index].ToString() + t;
-                slot.Garage = garage;
-                slot.Location = "Skellefteå";
-                db.Slots.Add(slot);
-                
-                tmp.Add(slot);
-            }
-            //db.Slots.OrderBy(s => s.PID);
-            //tmp.OrderBy(s => s.PID);
-            garage.Slots = tmp;
-            //db.SaveChanges();
-            
-        }
+        
     }
 }

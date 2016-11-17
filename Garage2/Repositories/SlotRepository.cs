@@ -14,13 +14,18 @@ namespace Garage2.Repositories
         public SlotRepository()
         { }
 
-        public bool Park(Vehicle v, Slot s)
+        public bool Park(int vehicle_id, int slot_id)
         {
+            Vehicle v = GetVehicleByID(vehicle_id);
+            Slot s = GetSlotById(slot_id);
+
             if (s.Vehicle == null && v.Slot == null)
             {
                 s.Vehicle = v;
                 v.Slot = s;
                 s.ParkTime = DateTime.Now;
+                
+                db.SaveChanges();
                 return true;
             }
             else
