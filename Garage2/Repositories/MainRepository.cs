@@ -11,10 +11,23 @@ namespace Garage2.Repositories
     {
         private static Garage _selectedGarage = null;
         private static Owner _selectedOwner  = null;
+        private static bool _ownage = true;
 
         private static GarageRepository _garage = new GarageRepository();
         private static OwnerRepository _owner = new OwnerRepository();
         //private static GarageDb _db = new GarageDb();
+
+        public static bool Ownage
+        {
+            get 
+            {
+                return _ownage;
+            }
+            set
+            {
+                _ownage = value;
+            }
+        }
 
         public static Garage selectedGarage
         { 

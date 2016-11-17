@@ -1,5 +1,15 @@
 ﻿@model IEnumerable<Garage2.Entities.Vehicle>
 
+@{
+    if (ViewBag.Ownage) {
+        ViewBag.OwnageTrueClass  = "success";
+        ViewBag.OwnageFalseClass = "default";
+    } else {
+        ViewBag.OwnageTrueClass  = "default";
+        ViewBag.OwnageFalseClass = "success";
+    }
+}
+
 <br />
 <form action="/vehicles" method="post">
     <div class="row">
@@ -7,7 +17,14 @@
             <input type="search" name="search" value="" placeholder="Sök.." class="form-control" autofocus />
         </div>
         <div class="col-lg-3">
-            @Html.DropDownList("type", new SelectList(ViewBag.VehicleTypes), "- Välj FordonsTyp - ",  new { @class = "form-control", onchange = "this.form.submit()" })
+            @Html.DropDownList("type", new SelectList(ViewBag.VehicleTypes), "- Välj FordonsTyp - ", new { @class = "form-control", onchange = "this.form.submit()" })
+        </div>
+        <div class="col-lg-3">
+            <div class="btn-group" role="group" aria-label="...">
+                @Html.ActionLink("My", "select", new { ownage = true }, new { @class = "btn btn-" + @ViewBag.OwnageTrueClass })
+                @Html.ActionLink("Others", "select", new { ownage = false }, new { @class = "btn btn-" + @ViewBag.OwnageFalseClass })
+            <i class="fa fa-@ViewBag.vehicleIcon"></i>
+            </div>
         </div>
     </div>
 </form>

@@ -18,13 +18,20 @@ namespace Garage2.Controllers
         private GarageDb db = new GarageDb();
         private VehicleRepository repo = new VehicleRepository();
 
+        // GET: Select
+        public ActionResult Select(bool ownage)
+        {
+            MainRepository.Ownage = ownage;
+            return Redirect(Request.UrlReferrer.ToString());
+        }
+
         // GET: Vehicles
         public ActionResult Index()
         {
             ViewBag.VehicleTypes = Enum.GetValues(typeof(VehicleType)).Cast<VehicleType>();
+            ViewBag.Ownage = MainRepository.Ownage;
 
-            // return View(db.Vehicles.Include("Owner").Include("Slot").ToList());
-            var vehicles = repo.GetMyVehicles();
+            var vehicles = repo.GetMyVehicles(MainRepository.Ownage);
             return View(vehicles);
         }
 
@@ -35,6 +42,7 @@ namespace Garage2.Controllers
             ViewBag.VehicleTypes = Enum.GetValues(typeof(VehicleType)).Cast<VehicleType>();
             ViewBag.type = typeString;
             ViewBag.Search = searchString;
+            //ViewBag.Ownage = MainRepository.Ownage;
 
             var vehicles = repo.Search(searchString, typeString);
             return View(vehicles);

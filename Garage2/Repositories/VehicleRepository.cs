@@ -12,17 +12,25 @@ namespace Garage2.Repositories
     {
         private GarageDb db = new GarageDb();
 
-        public IEnumerable<Vehicle> GetMyVehicles()
+        public IEnumerable<Vehicle> GetMyVehicles(bool ownage)
         {
             var ownerIdString = MainRepository.selectedOwner.Id.ToString();
-            var vehicles = db.Vehicles
+            var allVehicles = db.Vehicles
                 .Include("Owner")
-                .Include("Slot")
-                .Where(v => (
-                     (v.Owner.Id.ToString() == ownerIdString)
-                       ))
-                .ToList();
-            return vehicles;
+                .Include("Slot");
+
+            if (ownage)
+            {
+                var myVehicles = allVehicles.Where(v => (
+                         (v.Owner.Id.ToString() == ownerIdString) ));
+                return myVehicles.ToList();
+            }
+            else
+            {
+                var otherVehicles = allVehicles.Where(v => (
+                         (v.Owner.Id.ToString() != ownerIdString) ));
+                return otherVehicles.ToList();
+            }
         }
 
         public IEnumerable<Vehicle> Search(string searchString, string typeString)
