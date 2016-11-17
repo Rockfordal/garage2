@@ -1,10 +1,18 @@
 ﻿@model IEnumerable<Garage2.Entities.Vehicle>
 
-@{
-    ViewBag.Title = "Index";
-}
+<br />
+<form action="/vehicles" method="post">
+    <div class="row">
+        <div class="col-lg-3">
+            <input type="search" name="search" value="" placeholder="Sök.." class="form-control" autofocus />
+        </div>
+        <div class="col-lg-3">
+            @Html.DropDownList("type", new SelectList(ViewBag.VehicleTypes), "- Välj FordonsTyp - ",  new { @class = "form-control", onchange = "this.form.submit()" })
+        </div>
+    </div>
+</form>
 
-<h2>Index</h2>
+<br />
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -19,6 +27,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.RegNr)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Manufacturer)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Model)
@@ -48,6 +59,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.RegNr)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Manufacturer)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Model)

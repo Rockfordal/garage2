@@ -11,7 +11,7 @@ using Garage2.Entities;
 
 namespace Garage2.Controllers
 {
-    public class SlotsController : Controller
+    public class SlotsController : ApplicationController
     {
         private GarageDb db = new GarageDb();
 
@@ -90,6 +90,7 @@ namespace Garage2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,PID,Location,Garage")] Slot slot)
         {
+            ViewBag.ListOfGarages = db.Garages;
             if (ModelState.IsValid)
             {
                 db.Entry(slot).State = EntityState.Modified;
@@ -103,7 +104,6 @@ namespace Garage2.Controllers
                 var exception = ModelState.Values.Last().Errors.Last().Exception;
                 return Content("Nått gick fel: <br/>" + error + "<br/> exception: <br/>" +  exception);
             }
-            ViewBag.ListOfGarages = db.Garages;
             return View(slot);
         }
 

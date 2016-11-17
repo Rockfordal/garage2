@@ -1,19 +1,18 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+﻿using Garage2.Entities;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Web;
+using System.Web.WebPages.Html;
 
-namespace Garage2.Entities
+namespace Garage2.Models
 {
-    public enum VehicleType
+    public class EditVehicleVM
     {
-        Car, Boat, Bike, Truck
-    }
-
-    public class Vehicle
-    {
-        [Key]
         public int Id { get; set; }
 
-        [Required, DisplayName("Regnummer")]
+        [DisplayName("Regnummer")]
         public string RegNr { get; set; }
 
         [DisplayName("Tillverkare")]
@@ -37,7 +36,12 @@ namespace Garage2.Entities
         [DisplayName("Ägare")]
         public Owner Owner { get; set; }
 
+        // public int SlotId { get; set; }
+
         [DisplayName("Parkering")]
-        public virtual Slot Slot { get; set; }
+        public IEnumerable<SelectListItem> Slots { get; set; }
+        // public virtual Slot Slot { get; set; }
+
     }
+
 }

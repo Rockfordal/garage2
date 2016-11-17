@@ -12,16 +12,25 @@ using Garage2.Repositories;
 
 namespace Garage2.Controllers
 {
-    public class GaragesController : Controller
+    public class GaragesController : ApplicationController
     {
         private GarageRepository repo = new GarageRepository();
 
         // GET: Seed
         public ActionResult Seed()
         {
-            MainRepository.Seed(repo.db);
-            return Redirect("Index");
-            throw new NotImplementedException();
+            MainRepository.Seed(new GarageDb());
+            return Content("Seed utförd");
+        }
+
+        public ActionResult Select(int? id)
+        {
+            if (id != null)
+            {
+                int myid = (int) id;
+                MainRepository.selectedGarage = repo.GetGarageByID(myid);
+            }
+            return Redirect(Request.UrlReferrer.ToString());
         }
 
         // GET: Garages
