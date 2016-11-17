@@ -159,6 +159,10 @@
     <Compile Include="Migrations\201611170846391_Slots.Designer.cs">
       <DependentUpon>201611170846391_Slots.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611170930214_Slask.cs" />
+    <Compile Include="Migrations\201611170930214_Slask.Designer.cs">
+      <DependentUpon>201611170930214_Slask.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\EditVehicleVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -257,6 +261,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611170846391_Slots.resx">
       <DependentUpon>201611170846391_Slots.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611170930214_Slask.resx">
+      <DependentUpon>201611170930214_Slask.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
