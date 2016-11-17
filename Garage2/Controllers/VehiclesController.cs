@@ -9,36 +9,34 @@ using System.Web.Mvc;
 using Garage2.DataAccess;
 using Garage2.Entities;
 using Garage2.Models;
+using Garage2.Repositories;
 
 namespace Garage2.Controllers
 {
     public class VehiclesController : ApplicationController
     {
         private GarageDb db = new GarageDb();
+        private VehicleRepository repo = new VehicleRepository();
 
         // GET: Vehicles
         public ActionResult Index()
         {
             ViewBag.VehicleTypes = Enum.GetValues(typeof(VehicleType)).Cast<VehicleType>();
-            return View(db.Vehicles.Include("Owner").Include("Slot").ToList());
+
+            // return View(db.Vehicles.Include("Owner").Include("Slot").ToList());
+            var vehicles = repo.GetMyVehicles();
+            return View(vehicles);
         }
 
         // POST: Vehicles
         [HttpPost]
-        public ActionResult Index(string search, string type)
+        public ActionResult Index(string searchString, string typeString)
         {
             ViewBag.VehicleTypes = Enum.GetValues(typeof(VehicleType)).Cast<VehicleType>();
-            ViewBag.type = type;
+            ViewBag.type = typeString;
+            ViewBag.Search = searchString;
 
-            ViewBag.Search = search;
-            var vehicles = db.Vehicles
-                .Where(v => (
-                        (v.Manufacturer == search || search == "")
-                     && (v.VehicleType.ToString() == type || type == "")
-                       ))
-                .Include("Owner")
-                .Include("Slot")
-                .ToList();
+            var vehicles = repo.Search(searchString, typeString);
             return View(vehicles);
         }
 
