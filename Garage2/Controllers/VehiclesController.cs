@@ -135,7 +135,7 @@ namespace Garage2.Controllers
             //    db.Slots.ToSelectListItems(null)
             //);
 
-            veh.Slots = new SelectList(db.Slots, "Id", "PID");
+            //veh.Slots = new SelectList(db.Slots, "Id", "PID");
 
             return View(vehicle);
         }
