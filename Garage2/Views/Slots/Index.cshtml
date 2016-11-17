@@ -7,8 +7,22 @@
 <h2>Index</h2>
 
 <p>
+
     @Html.ActionLink("Create New", "Create")
+    
 </p>
+
+@*<li class="dropdown">
+    <ul class="dropdown-menu">
+        @foreach (Garage2.Entities.Vehicle vehicle in ViewBag.Vehicles)
+        {
+            <li>@Html.ActionLink(@vehicle.Manufacturer + " " + vehicle.Model, "Select", "vehicles", new { v_id = @vehicle.Id }, new { })</li>
+        }
+    </ul>
+</li>*@
+
+
+
 <table class="table">
     <tr>
         <th>
@@ -32,6 +46,9 @@
             @Html.DisplayFor(modelItem => item.Location)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.Vehicle.Owner)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Vehicle.Model)
         </td>
         <td>
@@ -39,7 +56,7 @@
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |
             @if(item.Vehicle == null)
             { 
-                @Html.ActionLink("Park", "Park", new { v_id = 1, id = item.Id })
+                @Html.ActionLink("Park", "Park", new { id = item.Id, v_id = 2 })
             }
             else
             {

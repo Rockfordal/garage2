@@ -250,7 +250,6 @@
     <Content Include="Views\Parkassignments\Details.cshtml" />
     <Content Include="Views\Parkassignments\Edit.cshtml" />
     <Content Include="Views\Parkassignments\Index.cshtml" />
-    <None Include="Views\Slots\Edit.cshtml.genererad" />
     <None Include="Views\Slots\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>

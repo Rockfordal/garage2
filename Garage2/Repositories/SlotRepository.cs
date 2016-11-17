@@ -14,17 +14,16 @@ namespace Garage2.Repositories
         public SlotRepository()
         { }
 
-        public bool Park(int vehicle_id, int slot_id)
+        public bool Park(int id, int v_id)
         {
-            Vehicle v = GetVehicleByID(vehicle_id);
-            Slot s = GetSlotById(slot_id);
+            Vehicle v = GetVehicleByID(v_id);
+            Slot s = GetSlotById(id);
 
             if (s.Vehicle == null && v.Slot == null)
             {
                 s.Vehicle = v;
-                v.Slot = s;
-                s.ParkTime = DateTime.Now;
-                
+                //v.Slot = s;
+                //s.ParkTime = DateTime.Now;
                 db.SaveChanges();
                 return true;
             }
@@ -32,31 +31,40 @@ namespace Garage2.Repositories
                 return false;
         }
 
-        public Vehicle UnPark(Slot s)
+        public Vehicle UnPark(int id)
         {
+            Slot s = GetSlotById(id);
             if (s.Vehicle != null)
             {
                 Vehicle v = s.Vehicle;
                 s.Vehicle = null;
                 v.Slot = null;
+                db.SaveChanges();
                 return s.Vehicle;
             }
-            else
-                return null;
+            foreach(var v in db.Vehicles)
+            {
+                if(v.Slot != null && v.Slot.Id == id)
+                {
+                    v.Slot = null;
+                    
+                    return s.Vehicle;
+                }
+            }
+            db.SaveChanges();
+            return null;
         }
 
         public Vehicle GetVehicleByID(int id)
         {
-            var vehicle = from v in db.Vehicles
-                          select new { Id = id };
-            return (Vehicle)vehicle;
+            Vehicle vehicle = db.Vehicles.FirstOrDefault(i => i.Id == id);
+            return vehicle;
         }
 
         public Slot GetSlotById(int id)
         {
-            var slot = from s in db.Slots
-                       select new { Id = id };
-            return (Slot)slot;
+            Slot slot = db.Slots.FirstOrDefault(i => i.Id == id);
+            return slot;
         }
     }
 }
