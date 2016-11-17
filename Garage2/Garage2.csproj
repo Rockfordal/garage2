@@ -170,11 +170,16 @@
     <Compile Include="Migrations\201611170942599_Parkass.Designer.cs">
       <DependentUpon>201611170942599_Parkass.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611171234591_tja.cs" />
+    <Compile Include="Migrations\201611171234591_tja.Designer.cs">
+      <DependentUpon>201611171234591_tja.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\EditVehicleVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\GarageRepository.cs" />
     <Compile Include="Repositories\MainRepository.cs" />
+    <Compile Include="Repositories\OwnerRepository.cs" />
     <Compile Include="Repositories\SlotRepository.cs" />
     <Compile Include="Repositories\VehicleRepository.cs" />
   </ItemGroup>
@@ -286,6 +291,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611170942599_Parkass.resx">
       <DependentUpon>201611170942599_Parkass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611171234591_tja.resx">
+      <DependentUpon>201611171234591_tja.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

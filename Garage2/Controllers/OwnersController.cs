@@ -8,11 +8,13 @@ using System.Web;
 using System.Web.Mvc;
 using Garage2.DataAccess;
 using Garage2.Entities;
+using Garage2.Repositories;
 
 namespace Garage2.Controllers
 {
     public class OwnersController : ApplicationController
     {
+        private OwnerRepository repo = new OwnerRepository();
         private GarageDb db = new GarageDb();
 
         // GET: Seed
@@ -20,6 +22,24 @@ namespace Garage2.Controllers
         {
             Garage2.Repositories.MainRepository.Seed(db);
             return Content("Seed klar (förhoppningsvis)");
+        }
+
+        // GET: Select
+        public ActionResult Select(int? id)
+        {
+            if (id != null)
+            {
+                int ownerId = (int) id;
+                MainRepository.selectedOwner = repo.GetOwnerByID(ownerId);
+            }
+            var o = MainRepository.selectedOwner;
+            //if (o != null)
+            //{
+            //    return Content(MainRepository.selectedOwner.FullName);
+            //} else {
+            //    return Content("ägare blev inte satt");
+            //}
+            return Redirect(Request.UrlReferrer.ToString());
         }
 
         // GET: Owners

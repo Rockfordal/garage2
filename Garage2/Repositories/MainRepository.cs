@@ -10,7 +10,12 @@ namespace Garage2.Repositories
     public static class MainRepository
     {
         private static Garage _selectedGarage = null;
+        private static Owner _selectedOwner  = null;
+
         private static GarageRepository _garage = new GarageRepository();
+        private static OwnerRepository _owner = new OwnerRepository();
+        //private static GarageDb _db = new GarageDb();
+
         public static Garage selectedGarage
         { 
             get
@@ -25,6 +30,23 @@ namespace Garage2.Repositories
             set
             {
                 _selectedGarage = value;
+            }
+        }
+
+        public static Owner selectedOwner
+        { 
+            get
+            {
+                if (_selectedOwner == null)
+                {
+                    _selectedOwner = _owner.GimmeOwner();
+                }
+
+                return _selectedOwner;
+            }
+            set
+            {
+                _selectedOwner = value;
             }
         }
 
@@ -69,9 +91,7 @@ namespace Garage2.Repositories
             //    Year = 1999
             //};
 
-
             //db.Vehicles.Add(v1);
-
             //db.Vehicles.Add(v2);
 
             db.SaveChanges();
