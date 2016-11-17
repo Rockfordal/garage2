@@ -9,6 +9,8 @@ namespace Garage2.Repositories
 {
     public static class MainRepository
     {
+        public static Garage selectedGarage = null;
+
         public static void Seed(GarageDb db)
         {
             var kurt = new Owner() { FirstName = "Kurt", LastName = "Ohlsson" };
