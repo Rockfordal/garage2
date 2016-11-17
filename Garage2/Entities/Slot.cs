@@ -9,10 +9,10 @@ namespace Garage2.Entities
         [Key]
         public int Id { get; set; }
 
-        [MinLength(1), MaxLength(10), DisplayName("ID-nummer")]
+        [MinLength(1), MaxLength(10), DisplayName("P-Nummer")]
         public string PID { get; set; }
 
-        [DisplayName("Plats")]
+        [DisplayName("Platsbeskrivning")]
         public string Location { get; set; }
 
         [Required, DisplayName("Garage")]

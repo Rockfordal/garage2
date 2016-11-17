@@ -49,7 +49,10 @@ namespace Garage2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Vehicle vehicle = db.Vehicles.Find(id);
+            Vehicle vehicle = db.Vehicles
+                .Include(v => v.Owner)
+                .Include(v => v.Slot)
+                .SingleOrDefault(v => v.Id == id);
             if (vehicle == null)
             {
                 return HttpNotFound();

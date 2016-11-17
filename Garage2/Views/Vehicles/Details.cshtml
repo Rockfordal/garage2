@@ -11,6 +11,14 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.Owner)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Owner.FullName)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.RegNr)
         </dt>
 
@@ -66,6 +74,13 @@
             @Html.DisplayFor(model => model.VehicleType)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Slot.PID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Slot.PID)
+        </dd>
     </dl>
 </div>
 <p>
