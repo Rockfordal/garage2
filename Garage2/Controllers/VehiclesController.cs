@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using Garage2.DataAccess;
 using Garage2.Entities;
 using Garage2.Models;
+//using Garage2.Extensions;
 
 namespace Garage2.Controllers
 {
@@ -105,13 +106,16 @@ namespace Garage2.Controllers
             //ViewBag.Slots = new SelectList(slotList, "Id", "PID");
             //ViewBag.Slots = slotList;
 
-            var slotQuery = from s in db.Slots select s;
+            //var slotQuery = from s in db.Slots select s;
 
-            if (vehicle.Slot != null)
-                ViewBag.Slot = new SelectList(slotQuery, "Id", "PID", vehicle.Slot.Id);
-            else
-                ViewBag.Slot = new SelectList(slotQuery, "Id", "PID", null);
+            //if (vehicle.Slot != null)
+            //    ViewBag.Slot = new SelectList(slotQuery, "Id", "PID", vehicle.Slot.Id);
+            //else
+            //    ViewBag.Slot = new SelectList(slotQuery, "Id", "PID");
+
+            //ViewBag.Slot = new SelectList(slotList, "Id", "PID");
             //selectedSlot = PopulateSlotsDropDownList(selectedSlot;
+            //IEnumerable<SelectListItem> sels = new IEnumerable<SelectListItem>();
 
             var veh = new EditVehicleVM();
             veh.Id = vehicle.Id;
@@ -122,7 +126,7 @@ namespace Garage2.Controllers
             veh.RegNr = vehicle.RegNr;
             veh.VehicleType = vehicle.VehicleType;
             veh.Year = vehicle.Year;
-            //veh.Slots = (SelectListItem) slotQuery.ToList();
+            //veh.Slots = (SelectListItem)slotQuery.ToList();
 
             //var selectedId = null;
             //slotQuery.ToSelectItems(selectdId);
@@ -135,16 +139,26 @@ namespace Garage2.Controllers
             //    db.Slots.ToSelectListItems(null)
             //);
 
-            veh.Slots = new SelectList(db.Slots, "Id", "PID");
+            //veh.Slots = new SelectList(db.Slots, "Id", "PID");
+
+            IEnumerable<Slot> ss = db.Slots;
+
+            //veh.Slots = db.Slots.ToSelectItems(null);
+
+            //veh.Slots = new SelectList(db.Slots, "ID", "Name");
+
+            //veh.Slots = db.Slots.ToList();
 
             return View(vehicle);
         }
+
 
         // POST: Vehicles/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        //public ActionResult Edit(int id, Vehicle vehicle, Slot Slot)
         public ActionResult Edit([Bind(Include = "Id,RegNr,Manufacturer,Model,Color,NumberOfWheels,Year,VehicleType,Slot, Slot_Id")] Vehicle vehicle)
         {
             if (ModelState.IsValid)
