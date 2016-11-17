@@ -123,13 +123,11 @@
     <Compile Include="Controllers\GaragesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OwnersController.cs" />
-    <Compile Include="Controllers\ParkassignmentsController.cs" />
     <Compile Include="Controllers\SlotsController.cs" />
     <Compile Include="Controllers\VehiclesController.cs" />
     <Compile Include="DataAccess\GarageDb.cs" />
     <Compile Include="Entities\Garage.cs" />
     <Compile Include="Entities\Owner.cs" />
-    <Compile Include="Entities\Parkassignment.cs" />
     <Compile Include="Entities\Slot.cs" />
     <Compile Include="Entities\Vehicle.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
@@ -165,10 +163,6 @@
     <Compile Include="Migrations\201611170932116_Ja vi vill gärna ha datetime nullable istället för string tack.cs" />
     <Compile Include="Migrations\201611170932116_Ja vi vill gärna ha datetime nullable istället för string tack.Designer.cs">
       <DependentUpon>201611170932116_Ja vi vill gärna ha datetime nullable istället för string tack.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611170942599_Parkass.cs" />
-    <Compile Include="Migrations\201611170942599_Parkass.Designer.cs">
-      <DependentUpon>201611170942599_Parkass.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\EditVehicleVM.cs" />
@@ -283,9 +277,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611170932116_Ja vi vill gärna ha datetime nullable istället för string tack.resx">
       <DependentUpon>201611170932116_Ja vi vill gärna ha datetime nullable istället för string tack.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611170942599_Parkass.resx">
-      <DependentUpon>201611170942599_Parkass.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
