@@ -31,3 +31,12 @@
 
 }
 
+.modal-content {
+    width: 30em !important;
+    margin-top: 20% !important;
+    background: green !important;
+}
+
+.modal-window {
+    width: 50%;
+}

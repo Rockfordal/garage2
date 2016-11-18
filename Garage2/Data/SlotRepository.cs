@@ -66,6 +66,18 @@ namespace Garage2.Data
             return null;
         }
 
+        public Vehicle GetVehicleInSpot(int id)
+        {
+            foreach(var v in db.Vehicles)
+            {
+                if(v.Slot.Id == id)
+                {
+                    return v;
+                }
+            }
+            return null;
+        }
+
         public Vehicle GetVehicleByID(int id)
         {
             Vehicle vehicle = db.Vehicles.FirstOrDefault(i => i.Id == id);

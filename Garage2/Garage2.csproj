@@ -248,7 +248,7 @@
     <Content Include="Views\Parkassignments\Edit.cshtml" />
     <Content Include="Views\Parkassignments\Index.cshtml" />
     <None Include="Views\Slots\Edit.cshtml" />
-    <Content Include="Views\Slots\_Lyubomir.cshtml" />
+    <Content Include="Views\Slots\SlotDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Converters\" />

@@ -38,10 +38,11 @@ namespace Garage2.Controllers
         }
 
         // GET: Vehicles
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
             ViewBag.VehicleTypes = Enum.GetValues(typeof(VehicleType)).Cast<VehicleType>();
             ViewBag.Ownage = MainRepository.Ownage;
+            ViewBag.Search = searchString;
 
             var vehicles = _vehicle.GetVehicles(MainRepository.Ownage);
             return View(vehicles);
@@ -54,7 +55,7 @@ namespace Garage2.Controllers
             ViewBag.VehicleTypes = Enum.GetValues(typeof(VehicleType)).Cast<VehicleType>();
             ViewBag.type = typeString;
             ViewBag.Search = searchString;
-            //ViewBag.Ownage = MainRepository.Ownage;
+            ViewBag.Ownage = MainRepository.Ownage;
 
             var vehicles = _vehicle.Search(searchString, typeString);
             return View(vehicles);

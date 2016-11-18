@@ -87,9 +87,20 @@ namespace Garage2.Controllers
             return View(slot);
         }
 
-        public ActionResult ViewLyubomir()
+        public ActionResult ViewLyubomir(int id)
         {
-            return PartialView("_Lyubomir");
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ViewBag.ModalSlot = _context.Slots.Find(id);
+            if (ViewBag.ModalSlot == null)
+            {
+                return HttpNotFound();
+            }
+            //return View(slot);
+            
+            return PartialView("SlotDetails");
         }
 
         [HttpPost]

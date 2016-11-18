@@ -64,7 +64,7 @@ namespace Garage2.Data
                 .Include("Owner")
                 .Include("Slot")
                 .Where(v => (
-                        (v.Manufacturer == searchString || searchString == "")
+                        (searchString == "" || v.Manufacturer == searchString || v.Model == searchString || v.RegNr == searchString) 
                      && (v.VehicleType.ToString() == typeString || typeString == "")
                      && (v.Owner.Id.ToString() == ownerIdString)
                        ))
