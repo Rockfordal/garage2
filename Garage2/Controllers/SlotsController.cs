@@ -32,7 +32,7 @@ namespace Garage2.Controllers
         // GET: Slots
         public ActionResult Index()
         {
-            ViewBag.Vehicles = _vehicle.GetMyParkableVehicles(true);
+            ViewBag.Vehicles = _vehicle.GetVehicles(true);
             var slots = new List<Slot>();
             if (Garage2.Repositories.MainRepository.selectedGarage != null)
             {
@@ -83,6 +83,16 @@ namespace Garage2.Controllers
             return View(slot);
         }
 
+        public ActionResult ViewLyubomir()
+        {
+            return PartialView("_Lyubomir");
+        }
+
+        [HttpPost]
+        public ActionResult Lyubomir()
+        {
+            return RedirectToAction("Index");
+        }
 
         // GET: Slots/Park
         public ActionResult Park(int id, int v_id)

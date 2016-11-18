@@ -1,13 +1,13 @@
-﻿$('.SlotDetails').on('click', function () {
-    $("#DetailModal").dialog({
+﻿$('.AddUser').on('click', function () {
+    $("#AddUserForm").dialog({
         autoOpen: true,
         position: { my: "center", at: "top+350", of: window },
         width: 1000,
         resizable: false,
-        title: 'Details',
+        title: 'Add User Form',
         modal: true,
         open: function () {
-            $(this).load('@Url.Action("DetailsPartialView", "Slots")');
+            $(this).load('@Url.Action("AddUserPartialView", "Home")');
         },
         buttons: {
             "Add User": function () {

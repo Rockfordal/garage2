@@ -19,6 +19,9 @@
     </ul>
 </li>*@
 
+@Html.ActionLink("Lyubomir ", "ViewLyubomir", "Slots",
+null, new { @class = "modal-link btn btn-success" })
+
 @foreach(var vehicle in ViewBag.Vehicles)
 {
     <p>@vehicle.Manufacturer  @vehicle.Model</p>
@@ -47,8 +50,8 @@
     }
 
     <div class="slot">
-        <a href="@Url.Action("Details", "Slots", new { id = item.Id })"><i class="fa fa-@ViewBag.vehicleIcon fa-5x"></i></a>
-        
+        @*<a href="@Url.Action("Details", "Slots", new { id = item.Id })"><i class="fa fa-@ViewBag.vehicleIcon fa-5x"></i></a>*@
+        <button class="SlotDetails"><i class="fa fa-@ViewBag.vehicleIcon fa-5x"></i></button>
         <div class="slotContent">
             <p>@item.PID @item.Location</p>
             @if (item.Vehicle != null)
@@ -66,7 +69,7 @@
             {
 
                 <div class="btn-group">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button type="button" class="btn btn-default btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Parkera <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
@@ -82,12 +85,14 @@
             }
             else
             {
-                <button type="button" class="btn btn-default">@Html.ActionLink("Unpark", "Unpark", new { id = item.Id })</button>
-                
+                <button type="button" class="btn btn-default btn-danger">@Html.ActionLink("Unpark", "Unpark", new { id = item.Id })</button>
+
             }
         </div>
 
     </div>
 
     <div id="cleara"></div>
-} 
+
+    
+}
