@@ -7,9 +7,7 @@
 <h2>Index</h2>
 
 <p>
-
     @Html.ActionLink("Create New", "Create")
-    
 </p>
 
 @*<li class="dropdown">
@@ -25,8 +23,6 @@
 {
     <p>@vehicle.Manufacturer  @vehicle.Model</p>
 }
-
-<div id="DetailModal"></div>
 
 
 @foreach (var item in Model) {
@@ -49,6 +45,7 @@
                 break;
         }
     }
+
     <div class="slot">
         <a href="@Url.Action("Details", "Slots", new { id = item.Id })"><i class="fa fa-@ViewBag.vehicleIcon fa-5x"></i></a>
         
@@ -60,10 +57,8 @@
             }
 
             <p>@item.ParkTime</p>
-
-
-            
         </div>
+
         <div class="slotBottom">
             @*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
             @Html.ActionLink("Details", "Details", new { id = item.Id }) <br />*@
@@ -71,7 +66,7 @@
             {
 
                 <div class="btn-group">
-                    <button type="button" class="btn btn-default btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Parkera <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
@@ -87,53 +82,12 @@
             }
             else
             {
-                <button type="button" class="btn btn-default btn-danger">@Html.ActionLink("Unpark", "Unpark", new { id = item.Id })</button>
+                <button type="button" class="btn btn-default">@Html.ActionLink("Unpark", "Unpark", new { id = item.Id })</button>
                 
             }
         </div>
 
     </div>
-    
-    /*<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.PID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Location)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Vehicle)
-        </th>
-        <th></th>
-    </tr>
-     * <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.PID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Location)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Vehicle.Owner)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Vehicle.Model)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @if(item.Vehicle == null)
-            { 
-                @Html.ActionLink("Park", "Park", new { id = item.Id, v_id = 2 })
-            }
-            else
-            {
-                @Html.ActionLink("Unpark", "Unpark", new { id = item.Id })
-            }
-        </td>
-    </tr>
 
-
-</table>*/
-}
+    <div id="cleara"></div>
+} 
