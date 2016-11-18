@@ -26,7 +26,7 @@
     <p>@vehicle.Manufacturer  @vehicle.Model</p>
 }
 
-
+<div id="DetailModal"></div>
 
 
 @foreach (var item in Model) {
@@ -71,7 +71,7 @@
             {
 
                 <div class="btn-group">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button type="button" class="btn btn-default btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Parkera <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
@@ -87,7 +87,7 @@
             }
             else
             {
-                <button type="button" class="btn btn-default">@Html.ActionLink("Unpark", "Unpark", new { id = item.Id })</button>
+                <button type="button" class="btn btn-default btn-danger">@Html.ActionLink("Unpark", "Unpark", new { id = item.Id })</button>
                 
             }
         </div>
