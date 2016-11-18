@@ -8,18 +8,22 @@ using System.Web;
 using System.Web.Mvc;
 using Garage2.DataAccess;
 using Garage2.Entities;
-using Garage2.Repositories;
+using Garage2.Data;
 
 namespace Garage2.Controllers
 {
     public class SlotsController : ApplicationController
     {
-        
-        private SlotRepository repo = new SlotRepository();
-        private VehicleRepository _vehicle = new VehicleRepository();
+        private readonly SlotRepository _slot;
+        private readonly VehicleRepository _vehicle;
+        private readonly GarageDbContext _context;
 
-        private GarageDb db = new GarageDb();
-
+        public SlotsController()
+        {
+            _slot = new SlotRepository();
+            _vehicle = new VehicleRepository();
+            _context = new GarageDbContext();
+        }
 
         public ActionResult Test()
         {
@@ -34,13 +38,13 @@ namespace Garage2.Controllers
         {
             ViewBag.Vehicles = _vehicle.GetMyParkableVehicles(true);
             var slots = new List<Slot>();
-            if (Garage2.Repositories.MainRepository.selectedGarage != null)
+            if (Garage2.Data.MainRepository.selectedGarage != null)
             {
-                var currentGarageId = Garage2.Repositories.MainRepository.selectedGarage.Id;
-                slots = db.Slots.Include("Vehicle").Where(s => s.Garage.Id == currentGarageId).ToList();
+                var currentGarageId = Garage2.Data.MainRepository.selectedGarage.Id;
+                slots = _context.Slots.Include("Vehicle").Where(s => s.Garage.Id == currentGarageId).ToList();
             } else
             {
-                slots = db.Slots.Include("Vehicle").ToList();
+                slots = _context.Slots.Include("Vehicle").ToList();
             }
             return View(slots.OrderBy(s => s.PID));
         }
@@ -52,7 +56,7 @@ namespace Garage2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Slot slot = db.Slots.Find(id);
+            Slot slot = _context.Slots.Find(id);
             if (slot == null)
             {
                 return HttpNotFound();
@@ -75,8 +79,8 @@ namespace Garage2.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Slots.Add(slot);
-                db.SaveChanges();
+                _context.Slots.Add(slot);
+                _context.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -89,8 +93,8 @@ namespace Garage2.Controllers
         {
             if (ModelState.IsValid)
             {
-                repo.Park(id, v_id);
-                db.SaveChanges();
+                _slot.Park(id, v_id);
+                _context.SaveChanges();
             }
             return RedirectToAction("Index");
         }
@@ -100,8 +104,8 @@ namespace Garage2.Controllers
         {
             if (ModelState.IsValid)
             {
-                repo.UnPark(id);
-                db.SaveChanges();
+                _slot.UnPark(id);
+                _context.SaveChanges();
             }
             return RedirectToAction("Index");
         }
@@ -115,12 +119,12 @@ namespace Garage2.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Slot slot = db.Slots.Find(id);
+            Slot slot = _context.Slots.Find(id);
             if (slot == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ListOfGarages = db.Garages;
+            ViewBag.ListOfGarages = _context.Garages;
             return View(slot);
         }
 
@@ -131,11 +135,11 @@ namespace Garage2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,PID,Location,Garage")] Slot slot)
         {
-            ViewBag.ListOfGarages = db.Garages;
+            ViewBag.ListOfGarages = _context.Garages;
             if (ModelState.IsValid)
             {
-                db.Entry(slot).State = EntityState.Modified;
-                db.SaveChanges();
+                _context.Entry(slot).State = EntityState.Modified;
+                _context.SaveChanges();
                 return RedirectToAction("Index");
             }
             else
@@ -145,7 +149,7 @@ namespace Garage2.Controllers
                 var exception = ModelState.Values.Last().Errors.Last().Exception;
                 return Content("Nått gick fel: <br/>" + error + "<br/> exception: <br/>" +  exception);
             }
-            return View(slot);
+            //return View(slot);
         }
 
         // GET: Slots/Delete/5
@@ -155,7 +159,7 @@ namespace Garage2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Slot slot = db.Slots.Find(id);
+            Slot slot = _context.Slots.Find(id);
             if (slot == null)
             {
                 return HttpNotFound();
@@ -168,9 +172,9 @@ namespace Garage2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Slot slot = db.Slots.Find(id);
-            db.Slots.Remove(slot);
-            db.SaveChanges();
+            Slot slot = _context.Slots.Find(id);
+            _context.Slots.Remove(slot);
+            _context.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -178,7 +182,7 @@ namespace Garage2.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _context.Dispose();
             }
             base.Dispose(disposing);
         }

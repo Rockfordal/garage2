@@ -7,11 +7,11 @@ using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Web;
 
-namespace Garage2.Repositories
+namespace Garage2.Data
 {
     public class OwnerRepository
     {
-        public GarageDb db = new GarageDb();
+        public GarageDbContext db = new GarageDbContext();
 
         public OwnerRepository()
         {

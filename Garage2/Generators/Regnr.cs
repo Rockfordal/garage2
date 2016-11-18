@@ -57,7 +57,7 @@ namespace Garage2
         /// Generates slots with the format: A letter and 2 digits. eg: A08
         /// </summary>
         /// <param name="garage"></param>
-        public void GenerateSlots(Garage garage, GarageDb db)
+        public void GenerateSlots(Garage garage, GarageDbContext db)
         {
 
             char[] letters = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H' };
