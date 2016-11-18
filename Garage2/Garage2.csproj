@@ -196,6 +196,7 @@
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\DetailModal.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -246,6 +247,7 @@
     <Content Include="Views\Parkassignments\Details.cshtml" />
     <Content Include="Views\Parkassignments\Edit.cshtml" />
     <Content Include="Views\Parkassignments\Index.cshtml" />
+    <Content Include="Views\Slots\DetailsPartialView.cshtml" />
     <None Include="Views\Slots\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
