@@ -31,7 +31,7 @@ namespace Garage2.Controllers
             ViewBag.VehicleTypes = Enum.GetValues(typeof(VehicleType)).Cast<VehicleType>();
             ViewBag.Ownage = MainRepository.Ownage;
 
-            var vehicles = repo.GetMyVehicles(MainRepository.Ownage);
+            var vehicles = repo.GetVehicles(MainRepository.Ownage);
             return View(vehicles);
         }
 

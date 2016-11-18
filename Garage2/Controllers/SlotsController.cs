@@ -32,7 +32,7 @@ namespace Garage2.Controllers
         // GET: Slots
         public ActionResult Index()
         {
-            ViewBag.Vehicles = _vehicle.GetMyVehicles(true);
+            ViewBag.Vehicles = _vehicle.GetMyParkableVehicles(true);
             var slots = new List<Slot>();
             if (Garage2.Repositories.MainRepository.selectedGarage != null)
             {
