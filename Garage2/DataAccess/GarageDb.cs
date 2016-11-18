@@ -19,7 +19,6 @@ namespace Garage2.DataAccess
         public DbSet<Owner>   Owners   { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
         public DbSet<Slot>    Slots    { get; set; }
-        public DbSet<Parkassignment>  Parkassignments { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
