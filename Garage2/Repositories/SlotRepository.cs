@@ -47,8 +47,8 @@ namespace Garage2.Repositories
                 if(v.Slot != null && v.Slot.Id == id)
                 {
                     v.Slot = null;
-                    
-                    return s.Vehicle;
+                    s.Vehicle = null;
+                    break;
                 }
             }
             db.SaveChanges();
