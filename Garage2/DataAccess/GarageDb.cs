@@ -8,11 +8,10 @@ using System.Web;
 
 namespace Garage2.DataAccess
 {
-    public class GarageDb : DbContext
+    public class GarageDbContext : DbContext
     {
-        public GarageDb() : base("DefaultConnection")
+        public GarageDbContext() : base("DefaultConnection")
         { 
-            
         }
 
         public DbSet<Garage>  Garages  { get; set; }

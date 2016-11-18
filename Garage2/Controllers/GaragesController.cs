@@ -8,18 +8,23 @@ using System.Web;
 using System.Web.Mvc;
 using Garage2.DataAccess;
 using Garage2.Entities;
-using Garage2.Repositories;
+using Garage2.Data;
 
 namespace Garage2.Controllers
 {
     public class GaragesController : ApplicationController
     {
-        private GarageRepository repo = new GarageRepository();
+        private readonly GarageRepository _garage;
+
+        public GaragesController()
+        {
+            _garage = new GarageRepository();
+        }
 
         // GET: Seed
         public ActionResult Seed()
         {
-            MainRepository.Seed(new GarageDb());
+            MainRepository.Seed(new GarageDbContext());
             return Content("Seed utförd");
         }
 
@@ -29,7 +34,7 @@ namespace Garage2.Controllers
             if (id != null)
             {
                 int myid = (int) id;
-                MainRepository.selectedGarage = repo.GetGarageByID(myid);
+                MainRepository.selectedGarage = _garage.GetGarageByID(myid);
             }
             return Redirect(Request.UrlReferrer.ToString());
         }
@@ -37,13 +42,13 @@ namespace Garage2.Controllers
         // GET: Garages
         public ActionResult Index()
         {
-            return View(repo.GetAllGarages());
+            return View(_garage.GetAllGarages());
         }
 
         // GET: Garages/Details/5
         public ActionResult Details(int? id)
         {
-            return View(repo.GetGarageByIdWithSlots(id.Value));
+            return View(_garage.GetGarageByIdWithSlots(id.Value));
         }
 
         // GET: Garages/Create
@@ -61,7 +66,7 @@ namespace Garage2.Controllers
         {
             if (ModelState.IsValid)
             {
-                repo.CreateGarage(garage);
+                _garage.CreateGarage(garage);
                 return RedirectToAction("Index");
             }
             return View(garage);
@@ -70,7 +75,7 @@ namespace Garage2.Controllers
         // GET: Garages/Edit/5
         public ActionResult Edit(int? id)
         {
-            return View(repo.GetGarageByID(id.Value));
+            return View(_garage.GetGarageByID(id.Value));
         }
 
         // POST: Garages/Edit/5
@@ -86,7 +91,7 @@ namespace Garage2.Controllers
         // GET: Garages/Delete/5
         public ActionResult Delete(int? id)
         {
-            return View(repo.GetGarageByID(id.Value));
+            return View(_garage.GetGarageByID(id.Value));
         }
 
         // POST: Garages/Delete/5
@@ -94,7 +99,7 @@ namespace Garage2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            repo.DeleteGarage(id);
+            _garage.DeleteGarage(id);
             return RedirectToAction("Index");
         }
 
@@ -102,7 +107,7 @@ namespace Garage2.Controllers
         {
             if (disposing)
             {
-                repo.db.Dispose();
+                _garage.db.Dispose();
             }
             base.Dispose(disposing);
         }

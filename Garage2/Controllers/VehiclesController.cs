@@ -9,14 +9,26 @@ using System.Web.Mvc;
 using Garage2.DataAccess;
 using Garage2.Entities;
 using Garage2.Models;
-using Garage2.Repositories;
+using Garage2.Data;
+
+// kernel.Bind<ISlotRepository>().To<SlotRepository>().InRequestScope();
+// kernel.Bind<IVehicleRepository>().To<VehicleRepository>().InRequestScope();
 
 namespace Garage2.Controllers
 {
     public class VehiclesController : ApplicationController
     {
-        private GarageDb db = new GarageDb();
-        private VehicleRepository repo = new VehicleRepository();
+        private readonly GarageDbContext _context;
+        private readonly VehicleRepository _vehicle;
+
+        //private IVehicleRepository _repo;
+
+        //public VehiclesController(IVehicleRepository repo)
+        public VehiclesController()
+        {
+            _context = new GarageDbContext();
+            _vehicle = new VehicleRepository();
+        }
 
         // GET: Select
         public ActionResult Select(bool ownage)
@@ -31,7 +43,7 @@ namespace Garage2.Controllers
             ViewBag.VehicleTypes = Enum.GetValues(typeof(VehicleType)).Cast<VehicleType>();
             ViewBag.Ownage = MainRepository.Ownage;
 
-            var vehicles = repo.GetVehicles(MainRepository.Ownage);
+            var vehicles = _vehicle.GetVehicles(MainRepository.Ownage);
             return View(vehicles);
         }
 
@@ -44,7 +56,7 @@ namespace Garage2.Controllers
             ViewBag.Search = searchString;
             //ViewBag.Ownage = MainRepository.Ownage;
 
-            var vehicles = repo.Search(searchString, typeString);
+            var vehicles = _vehicle.Search(searchString, typeString);
             return View(vehicles);
         }
 
@@ -55,7 +67,7 @@ namespace Garage2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Vehicle vehicle = db.Vehicles
+            Vehicle vehicle = _context.Vehicles
                 .Include(v => v.Owner)
                 .Include(v => v.Slot)
                 .SingleOrDefault(v => v.Id == id);
@@ -81,8 +93,8 @@ namespace Garage2.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Vehicles.Add(vehicle);
-                db.SaveChanges();
+                _context.Vehicles.Add(vehicle);
+                _context.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -96,16 +108,16 @@ namespace Garage2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Vehicle vehicle = db.Vehicles.Find(id);
+            Vehicle vehicle = _context.Vehicles.Find(id);
             if (vehicle == null)
             {
                 return HttpNotFound();
             }
 
-            var slots = db.Slots;
+            var slots = _context.Slots;
             var slotList = slots.ToList();
 
-            if (db.Vehicles.ToList().Count() == 0)
+            if (_context.Vehicles.ToList().Count() == 0)
             {
                 return Content("Hittade inga slots");
             }
@@ -114,7 +126,7 @@ namespace Garage2.Controllers
             //ViewBag.Slots = new SelectList(slotList, "Id", "PID");
             //ViewBag.Slots = slotList;
 
-            var slotQuery = from s in db.Slots select s;
+            var slotQuery = from s in _context.Slots select s;
 
             if (vehicle.Slot != null)
                 ViewBag.Slot = new SelectList(slotQuery, "Id", "PID", vehicle.Slot.Id);
@@ -158,12 +170,12 @@ namespace Garage2.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(vehicle).State = EntityState.Modified;
+                _context.Entry(vehicle).State = EntityState.Modified;
                 //var testSlot = db.Slots.Find(4);
                 //var slot = vehicle.Slot;
                 //vehicle.Slot = testSlot;
                 var v = vehicle;
-                db.SaveChanges();
+                _context.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(vehicle);
@@ -176,7 +188,7 @@ namespace Garage2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Vehicle vehicle = db.Vehicles.Find(id);
+            Vehicle vehicle = _context.Vehicles.Find(id);
             if (vehicle == null)
             {
                 return HttpNotFound();
@@ -189,15 +201,15 @@ namespace Garage2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Vehicle vehicle = db.Vehicles.Find(id);
-            db.Vehicles.Remove(vehicle);
-            db.SaveChanges();
+            Vehicle vehicle = _context.Vehicles.Find(id);
+            _context.Vehicles.Remove(vehicle);
+            _context.SaveChanges();
             return RedirectToAction("Index");
         }
 
         private void PopulateSlotsDropDownList(object selectedSlot = null)
         {
-            var slotQuery = from s in db.Slots
+            var slotQuery = from s in _context.Slots
                                    // orderby d.Name
                                    select s;
             ViewBag.SlotID = new SelectList(slotQuery, "SlotId", "Name", selectedSlot);
@@ -208,7 +220,7 @@ namespace Garage2.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _context.Dispose();
             }
             base.Dispose(disposing);
         }

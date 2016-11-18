@@ -126,6 +126,7 @@
     <Compile Include="Controllers\SlotsController.cs" />
     <Compile Include="Controllers\VehiclesController.cs" />
     <Compile Include="DataAccess\GarageDb.cs" />
+    <Compile Include="Data\IVehicleRepository.cs" />
     <Compile Include="Entities\Garage.cs" />
     <Compile Include="Entities\Owner.cs" />
     <Compile Include="Entities\Slot.cs" />
@@ -167,11 +168,11 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\EditVehicleVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\GarageRepository.cs" />
-    <Compile Include="Repositories\MainRepository.cs" />
-    <Compile Include="Repositories\OwnerRepository.cs" />
-    <Compile Include="Repositories\SlotRepository.cs" />
-    <Compile Include="Repositories\VehicleRepository.cs" />
+    <Compile Include="Data\GarageRepository.cs" />
+    <Compile Include="Data\MainRepository.cs" />
+    <Compile Include="Data\OwnerRepository.cs" />
+    <Compile Include="Data\SlotRepository.cs" />
+    <Compile Include="Data\VehicleRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\Store.mdf" />
@@ -251,6 +252,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Converters\" />
+    <Folder Include="Infrastructue\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

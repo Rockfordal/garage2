@@ -8,19 +8,25 @@ using System.Web;
 using System.Web.Mvc;
 using Garage2.DataAccess;
 using Garage2.Entities;
-using Garage2.Repositories;
+using Garage2.Data;
 
 namespace Garage2.Controllers
 {
     public class OwnersController : ApplicationController
     {
-        private OwnerRepository repo = new OwnerRepository();
-        private GarageDb db = new GarageDb();
+        private readonly OwnerRepository _owner;
+        private readonly GarageDbContext _context;
+
+        public OwnersController()
+        {
+            _owner   = new OwnerRepository();
+            _context = new GarageDbContext();
+        }
 
         // GET: Seed
         public ActionResult Seed()
         {
-            Garage2.Repositories.MainRepository.Seed(db);
+            Garage2.Data.MainRepository.Seed(_context);
             return Content("Seed klar (förhoppningsvis)");
         }
 
@@ -30,7 +36,7 @@ namespace Garage2.Controllers
             if (id != null)
             {
                 int ownerId = (int) id;
-                MainRepository.selectedOwner = repo.GetOwnerByID(ownerId);
+                MainRepository.selectedOwner = _owner.GetOwnerByID(ownerId);
             }
             var o = MainRepository.selectedOwner;
             //if (o != null)
@@ -45,7 +51,7 @@ namespace Garage2.Controllers
         // GET: Owners
         public ActionResult Index()
         {
-            return View(db.Owners.ToList());
+            return View(_context.Owners.ToList());
         }
 
         // GET: Owners/Details/5
@@ -55,7 +61,7 @@ namespace Garage2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Owner owner = db.Owners.Find(id);
+            Owner owner = _context.Owners.Find(id);
             if (owner == null)
             {
                 return HttpNotFound();
@@ -78,8 +84,8 @@ namespace Garage2.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Owners.Add(owner);
-                db.SaveChanges();
+                _context.Owners.Add(owner);
+                _context.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -93,7 +99,7 @@ namespace Garage2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Owner owner = db.Owners.Find(id);
+            Owner owner = _context.Owners.Find(id);
             if (owner == null)
             {
                 return HttpNotFound();
@@ -110,8 +116,8 @@ namespace Garage2.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(owner).State = EntityState.Modified;
-                db.SaveChanges();
+                _context.Entry(owner).State = EntityState.Modified;
+                _context.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(owner);
@@ -124,7 +130,7 @@ namespace Garage2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Owner owner = db.Owners.Find(id);
+            Owner owner = _context.Owners.Find(id);
             if (owner == null)
             {
                 return HttpNotFound();
@@ -137,9 +143,9 @@ namespace Garage2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Owner owner = db.Owners.Find(id);
-            db.Owners.Remove(owner);
-            db.SaveChanges();
+            Owner owner = _context.Owners.Find(id);
+            _context.Owners.Remove(owner);
+            _context.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -147,7 +153,7 @@ namespace Garage2.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _context.Dispose();
             }
             base.Dispose(disposing);
         }
