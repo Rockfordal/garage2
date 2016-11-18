@@ -4,7 +4,6 @@
     padding: 1%;
     width: 15%;
     height: 15em;
-    padding-bottom: 5em;
     border: 1px solid black;
     border-radius: 0.5em;
     float: left;
@@ -12,16 +11,22 @@
 }
 
 .slotContent {
-    height: 70%;
-    border: 1px dotted red;
+    height: 40%;
+    //border: 1px dotted red;
 }
 
 .slotBottom {
-    position: absolute;
+    /*position: absolute;
     bottom: 0;
     left: 0;
-    right: 0;
-    padding: 0.4em;
-    height: 2em;
-    border: 1px dotted blue;
+    right: 0;*/
+    padding-top: 0.5em;
+    height: 26%;
+    //border: 1px dotted blue;
+}
+
+.slot a {
+    text-decoration: none;
+    color: black;
+
 }
